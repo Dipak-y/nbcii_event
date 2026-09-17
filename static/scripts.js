@@ -1,141 +1,151 @@
-document.addEventListener('DOMContentLoaded', function () {
-  var lenis = null;
-  if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    lenis = new Lenis({
-      duration: 1.1,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-      smoothWheel: true
-    });
-    var raf = function (time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-    requestAnimationFrame(raf);
-  }
+document.addEventListener('DOMContentLoaded',()=>{
 
-  var menuToggle = document.querySelector('[data-menu-toggle]');
-  var mobileNav = document.querySelector('[data-mobile-nav]');
+let lenis;
+if(typeof Lenis!=='undefined'&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  lenis=new Lenis({duration:1.1,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
+  const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};
+  requestAnimationFrame(raf);
+}
 
-  if (menuToggle && mobileNav) {
-    menuToggle.addEventListener('click', function () {
-      var open = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', String(!open));
-      menuToggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
-      menuToggle.classList.toggle('is-open', !open);
-      mobileNav.classList.toggle('is-open', !open);
-    });
-    mobileNav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.setAttribute('aria-label', 'Open menu');
-        menuToggle.classList.remove('is-open');
-        mobileNav.classList.remove('is-open');
-      });
-    });
-  }
+/* Mobile menu */
+const menu=document.querySelector('[data-menu-toggle]');
+const mobile=document.querySelector('[data-mobile-nav]');
 
-  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    link.addEventListener('click', function (event) {
-      var target = document.querySelector(link.getAttribute('href'));
-      if (!target) return;
-      event.preventDefault();
-      if (lenis) {
-        lenis.scrollTo(target, { offset: 0 });
-      } else {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+if(menu&&mobile){
+  menu.onclick=()=>{
+    const open=menu.getAttribute('aria-expanded')==='true';
+    menu.setAttribute('aria-expanded',!open);
+    menu.setAttribute('aria-label',open?'Open menu':'Close menu');
+    menu.classList.toggle('is-open',!open);
+    mobile.classList.toggle('is-open',!open);
+  };
+
+  mobile.querySelectorAll('a').forEach(a=>a.onclick=()=>{
+    menu.setAttribute('aria-expanded','false');
+    menu.setAttribute('aria-label','Open menu');
+    menu.classList.remove('is-open');
+    mobile.classList.remove('is-open');
   });
+}
 
-  var revealObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) entry.target.classList.add('is-visible');
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(function (element) {
-    revealObserver.observe(element);
+/* Smooth links */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.onclick=e=>{
+  const target=document.querySelector(a.getAttribute('href'));
+  if(!target)return;
+  e.preventDefault();
+  lenis?lenis.scrollTo(target):target.scrollIntoView({behavior:'smooth'});
+});
+
+/* Reveal animation */
+const reveal=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add('is-visible');
   });
+},{threshold:.12});
 
-  var sections = ['home', 'about', 'pillars', 'delegates', 'programme', 'gallery', 'outcomes', 'registration', 'contact'];
-  var navLinks = document.querySelectorAll('.nav-link');
-  var sectionObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach(function (link) {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
-      });
-    });
-  }, { rootMargin: '-28% 0px -62% 0px', threshold: 0 });
-  sections.forEach(function (id) {
-    var section = document.getElementById(id);
-    if (section) sectionObserver.observe(section);
+document.querySelectorAll('.reveal').forEach(e=>reveal.observe(e));
+
+/* Active navigation */
+const links=document.querySelectorAll('.nav-link');
+
+new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting)
+      links.forEach(l=>l.classList.toggle(
+        'active',
+        l.getAttribute('href')==='#'+e.target.id
+      ));
   });
+},{rootMargin:'-28% 0px -62% 0px'}).observe(document.querySelector('#home'));
 
-  var galleryToggle = document.querySelector('[data-gallery-toggle]');
-  if (galleryToggle) {
-    galleryToggle.addEventListener('click', function () {
-      var expanded = galleryToggle.getAttribute('aria-expanded') === 'true';
-      document.querySelectorAll('.gallery-extra').forEach(function (item) {
-        item.classList.toggle('is-visible', !expanded);
-      });
-      galleryToggle.setAttribute('aria-expanded', String(!expanded));
-      galleryToggle.innerHTML = expanded ? 'View more <span aria-hidden="true">↓</span>' : 'View less <span aria-hidden="true">↑</span>';
+document.querySelectorAll('section[id]').forEach(s=>{
+  new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting)
+        links.forEach(l=>l.classList.toggle(
+          'active',
+          l.getAttribute('href')==='#'+e.target.id
+        ));
     });
-  }
+  },{rootMargin:'-28% 0px -62% 0px'}).observe(s);
+});
 
-  function showStatus(form, type, message) {
-    var status = form.querySelector('.form-status');
-    status.className = 'form-status is-visible ' + type;
-    status.textContent = message;
-  }
+/* Gallery */
+const galleryBtn=document.querySelector('[data-gallery-toggle]');
 
-  function formPayload(form, kind) {
-    var data = new FormData(form);
-    var payload = {};
-    data.forEach(function (value, key) {
-      if (key === 'interests') {
-        if (!payload.interests) payload.interests = [];
-        payload.interests.push(value);
-      } else {
-        payload[key] = value;
-      }
-    });
-    if (kind === 'enquiry' && !payload.phone) payload.phone = '';
-    return payload;
-  }
+if(galleryBtn){
+  galleryBtn.onclick=()=>{
+    const open=galleryBtn.getAttribute('aria-expanded')==='true';
 
-  document.querySelectorAll('[data-api-form]').forEach(function (form) {
-    form.addEventListener('submit', async function (event) {
-      event.preventDefault();
-      var kind = form.getAttribute('data-api-form');
-      var required = Array.from(form.querySelectorAll('[required]'));
-      var interests = form.querySelectorAll('input[name="interests"]:checked');
-      var valid = required.every(function (field) { return field.checkValidity(); }) && (kind !== 'registration' || interests.length > 0);
-      if (!valid) {
-        showStatus(form, 'error', kind === 'registration' ? 'Please complete the required fields and select at least one area of interest.' : 'Please complete the required fields. Your message should be at least 10 characters.');
-        return;
-      }
+    document.querySelectorAll('.gallery-extra')
+      .forEach(e=>e.classList.toggle('is-visible',!open));
 
-      var button = form.querySelector('button[type="submit"]');
-      var originalLabel = button.innerHTML;
-      button.disabled = true;
-      button.innerHTML = 'Sending…';
-      try {
-        var response = await fetch('/api/forum/' + (kind === 'registration' ? 'registrations' : 'enquiries'), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formPayload(form, kind))
-        });
-        var result = await response.json();
-        if (!response.ok) throw new Error(result.error || 'Unable to submit right now.');
-        showStatus(form, 'success', result.message + ' Reference: ' + result.reference + '.');
-        form.reset();
-      } catch (error) {
-        showStatus(form, 'error', error.message || 'We could not submit your form right now. Please try again.');
-      } finally {
-        button.disabled = false;
-        button.innerHTML = originalLabel;
-      }
-    });
-  });
+    galleryBtn.setAttribute('aria-expanded',!open);
+    galleryBtn.innerHTML=open
+      ?'View more <span>↓</span>'
+      :'View less <span>↑</span>';
+  };
+}
+
+/* Forms */
+document.querySelectorAll('[data-api-form]').forEach(form=>{
+
+  form.onsubmit=async e=>{
+    e.preventDefault();
+
+    const type=form.dataset.apiForm;
+    const required=[...form.querySelectorAll('[required]')];
+    const interests=form.querySelectorAll('input[name="interests"]:checked');
+    const status=form.querySelector('.form-status');
+    const button=form.querySelector('button[type="submit"]');
+
+    if(!required.every(x=>x.checkValidity()) ||
+       (type==='registration'&&!interests.length)){
+      status.className='form-status is-visible error';
+      status.textContent='Please complete all required fields.';
+      return;
+    }
+
+    const old=button.innerHTML;
+    button.disabled=true;
+    button.innerHTML='Sending…';
+
+    try{
+      const response=await fetch(
+        type==='registration'
+          ?'/api/forum/registrations/'
+          :'/api/forum/contact/',
+        {
+          method:'POST',
+          headers:{
+            'X-CSRFToken':
+              form.querySelector('[name=csrfmiddlewaretoken]')?.value||''
+          },
+          body:new FormData(form),
+          credentials:'same-origin'
+        }
+      );
+
+      const data=await response.json();
+
+      if(!response.ok)
+        throw new Error(data.error||'Unable to submit.');
+
+      status.className='form-status is-visible success';
+      status.textContent=
+        `${data.message}. Reference: ${data.reference||''}`;
+
+      form.reset();
+
+    }catch(error){
+      status.className='form-status is-visible error';
+      status.textContent=error.message;
+    }finally{
+      button.disabled=false;
+      button.innerHTML=old;
+    }
+  };
+
+});
+
 });

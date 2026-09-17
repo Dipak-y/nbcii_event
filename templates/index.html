@@ -1,17 +1,15 @@
-<!doctype html>
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="UK–Nepal Business Forum 2026 — Building Stronger Partnerships, Creating Shared Prosperity.">
-  <meta property="og:title" content="UK–Nepal Business Forum 2026">
-  <meta property="og:description" content="A flagship bilateral platform for UK–Nepal trade, investment and strategic partnership.">
-  <meta property="og:type" content="website">
-  <title>UK–Nepal Business Forum 2026</title>
-  <link rel="icon" href="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png">
-  <link rel="stylesheet" href="static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>UK–Nepal Business Forum 2026</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
+
 <body>
+
   <div class="site-shell">
     <div class="topbar">Kathmandu · 26 November 2026 · By invitation and registration</div>
     <header class="site-header">
@@ -25,6 +23,7 @@
           <a class="nav-link" href="#pillars">Pillars</a>
           <a class="nav-link" href="#delegates">Delegates</a>
           <a class="nav-link" href="#programme">Programme</a>
+          <a class="nav-link" href="#panels">Panels</a>
           <a class="nav-link" href="#gallery">Gallery</a>
           <a class="nav-link" href="#outcomes">Outcomes</a>
           <a class="nav-link" href="#contact">Contact</a>
@@ -40,6 +39,7 @@
         <a href="#pillars">Pillars <span>›</span></a>
         <a href="#delegates">Delegates <span>›</span></a>
         <a href="#programme">Programme <span>›</span></a>
+        <a href="#panels">Panels <span>›</span></a>
         <a href="#gallery">Gallery <span>›</span></a>
         <a href="#outcomes">Outcomes <span>›</span></a>
         <a href="#contact">Contact <span>›</span></a>
@@ -154,6 +154,7 @@
             <article class="delegate-card reveal"><span class="line-icon">✦</span><h3>Technology &amp; startups</h3><p>Technology companies, start-ups and innovation partners.</p></article>
             <article class="delegate-card reveal"><span class="line-icon">○</span><h3>Media</h3><p>National and international media sharing the story of the partnership.</p></article>
             <article class="delegate-card reveal"><span class="line-icon">○</span><h3>Diaspora</h3><p>The Nepali diaspora contributing experience, networks and capital.</p></article>
+            <article class="delegate-card delegate-cta reveal"><h3>Want in the room?</h3><p>Registration is by invitation and application. Tell us who you are.</p><a href="#registration">Register your interest <span aria-hidden="true">↗</span></a></article>
           </div>
         </div>
       </section>
@@ -201,7 +202,7 @@
         </div>
       </section>
 
-      <section class="section panels-section">
+      <section class="section panels-section" id="panels">
         <div class="container">
           <div class="reveal section-heading">
             <div class="section-kicker">The conversations / 05</div>
@@ -214,7 +215,6 @@
             <article class="panel-card reveal"><span>03</span><strong>▣</strong><h3>Trade &amp; investment</h3><p>Market access, private sector growth and investment.</p></article>
             <article class="panel-card reveal"><span>04</span><strong>✦</strong><h3>Digital economy &amp; AI</h3><p>Digital government, technology partnerships and innovation.</p></article>
           </div>
-          <div class="tag-row"><span class="section-kicker">At the forum</span><div><span>Networking</span><span>B2B connections</span><span>Government engagement</span><span>Investment opportunities</span><span>Knowledge exchange</span><span>International partnerships</span><span>Innovation</span><span>Market access</span></div></div>
         </div>
       </section>
 
@@ -290,10 +290,10 @@
             <p>The Forum is designed to create visible momentum: stronger dialogue, useful introductions, new institutional collaborations and a follow-up mechanism that carries progress beyond the day.</p>
           </div>
           <div class="outcome-grid">
-            <article class="outcome-card reveal"><span>01 / Strategic</span><p>Stronger UK–Nepal bilateral trade and investment dialogue, and deeper public-private collaboration.</p></article>
-            <article class="outcome-card reveal"><span>02 / Business</span><p>New trade and investment leads, B2B partnerships and stronger market linkages.</p></article>
-            <article class="outcome-card reveal"><span>03 / Institutional</span><p>New collaborations across government, academia, industry and development partners.</p></article>
-            <article class="outcome-card reveal"><span>04 / Legacy</span><p>A pipeline for future trade missions and sector initiatives, with a follow-up mechanism to track progress after the Forum.</p></article>
+            <article class="outcome-card reveal" data-index="01"><span>01 / Strategic</span><p>Stronger UK–Nepal bilateral trade and investment dialogue, and deeper public-private collaboration.</p></article>
+            <article class="outcome-card reveal" data-index="02"><span>02 / Business</span><p>New trade and investment leads, B2B partnerships and stronger market linkages.</p></article>
+            <article class="outcome-card reveal" data-index="03"><span>03 / Institutional</span><p>New collaborations across government, academia, industry and development partners.</p></article>
+            <article class="outcome-card reveal" data-index="04"><span>04 / Legacy</span><p>A pipeline for future trade missions and sector initiatives, with a follow-up mechanism to track progress after the Forum.</p></article>
           </div>
         </div>
       </section>
@@ -301,42 +301,147 @@
       <section class="section partnership-section">
         <div class="container split-grid">
           <div class="reveal section-heading"><div class="section-kicker">The partnership / 08</div><h2>Convened with trust. Built for the next chapter.</h2><p>Organised by the Nepal Britain Chamber of Commerce &amp; Industry (NBCCI), in joint partnership with the British Embassy Kathmandu.</p></div>
-          <div class="reveal partnership-content"><span class="section-kicker">Our convening partners</span><div class="partner-grid"><div><strong>NBCCI</strong><p>Connecting businesses and strengthening UK–Nepal commercial ties.</p></div><div><strong>British Embassy Kathmandu</strong><p>Supporting a modern, productive and ambitious bilateral relationship.</p></div></div><a class="button button-secondary" href="#contact">Talk to the forum team <span>↗</span></a></div>
+          <div class="reveal partnership-content"><span class="section-kicker">Our convening partners</span><div class="partner-grid"><div class="partner-card"><div class="partner-logo"><img src="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png" alt="Nepal Britain Chamber of Commerce &amp; Industry logo" loading="lazy"></div><strong>NBCCI</strong><p>Connecting businesses and strengthening UK–Nepal commercial ties.</p></div><div class="partner-card"><div class="partner-logo"><img src="static/img/British Embassy Logo.jpeg" alt="British Embassy Kathmandu logo" loading="lazy"></div><strong>British Embassy Kathmandu</strong><p>Supporting a modern, productive and ambitious bilateral relationship.</p></div></div><a class="button button-secondary" href="#contact">Talk to the forum team <span>↗</span></a></div>
         </div>
       </section>
 
-      <section class="section registration-section" id="registration">
-        <div class="container form-layout">
-          <div class="form-intro"><div class="reveal section-kicker">Join the room / 09</div><h2 class="reveal">Put your name in the conversation.</h2><p class="reveal delay-1">Tell us a little about your role and the conversations you want to have. The forum team will review your registration and be in touch with next steps.</p><div class="form-facts reveal delay-2"><div>◷ <span>26 November 2026<br><strong>Kathmandu, Nepal</strong></span></div><div>◎ <span>Senior delegates and invited partners<br><strong>Registration is subject to confirmation</strong></span></div></div></div>
-          <form class="site-form reveal" data-api-form="registration" novalidate>
-            <div class="form-grid">
-              <label>Full name <i>*</i><input name="fullName" required placeholder="Your full name"></label>
-              <label>Organisation <i>*</i><input name="organization" required placeholder="Organisation or institution"></label>
-              <label>Designation <i>*</i><input name="designation" required placeholder="Your role"></label>
-              <label>Email address <i>*</i><input name="email" required type="email" placeholder="you@organisation.com"></label>
-              <label>Phone number <i>*</i><input name="phone" required pattern="^[+0-9()\\s-]{7,}$" placeholder="+977 or +44"></label>
-              <label>Country<select name="country"><option>Nepal</option><option>United Kingdom</option><option>Other</option></select></label>
-              <label>Sector <i>*</i><select name="sector" required><option value="">Select a sector</option><option>Government</option><option>Business</option><option>Investment</option><option>Education &amp; research</option><option>Development</option><option>Technology &amp; startup</option><option>Media</option><option>Other</option></select></label>
-              <label>Delegate type <i>*</i><select name="delegateType" required><option value="">Select delegate type</option><option>Government</option><option>Business</option><option>Investor</option><option>Academic</option><option>Development Partner</option><option>Technology / Startup</option><option>Media</option><option>Other</option></select></label>
-            </div>
-            <fieldset><legend>Which conversations are most relevant to you? <small>(select all that apply)</small></legend><div class="checkbox-grid"><label><input type="checkbox" name="interests" value="Trade &amp; Investment">Trade &amp; Investment</label><label><input type="checkbox" name="interests" value="Education &amp; Skills">Education &amp; Skills</label><label><input type="checkbox" name="interests" value="Energy &amp; Infrastructure">Energy &amp; Infrastructure</label><label><input type="checkbox" name="interests" value="Digital Economy &amp; AI">Digital Economy &amp; AI</label><label><input type="checkbox" name="interests" value="Green Growth">Green Growth</label><label><input type="checkbox" name="interests" value="Other">Other</label></div></fieldset>
-            <label>Anything you would like us to know? <small>(optional)</small><textarea name="message" placeholder="A partnership you are looking for, or a question for the forum team."></textarea></label>
-            <label class="honeypot">Website<input name="website" tabindex="-1" autocomplete="off"></label>
-            <div class="form-status" role="status" aria-live="polite"></div><button class="button button-primary submit-button" type="submit">Submit registration <span>↗</span></button><p class="form-note">Your information will be used by the forum team to process this registration and contact you about the event.</p>
-          </form>
-        </div>
-      </section>
+      <!-- REGISTRATION -->
+<section class="section registration-section" id="registration">
+  <div class="container form-layout">
+    <div class="form-intro">
+      <div class="section-kicker">Join the room / 09</div>
+      <h2>Put your name in the conversation.</h2>
+      <p>Tell us about your role and the conversations you want to have. The forum team will review your registration and contact you.</p>
+      <div class="form-facts">
+        <div>◷ <span>26 November 2026<br><strong>Kathmandu, Nepal</strong></span></div>
+        <div>◎ <span>Senior delegates and invited partners<br><strong>Registration subject to confirmation</strong></span></div>
+      </div>
+    </div>
 
-      <section class="section contact-section" id="contact">
-        <div class="container form-layout">
-          <div><div class="reveal section-kicker">Stay in touch / 10</div><h2 class="reveal">Have a question before you register?</h2><p class="reveal delay-1">Whether you are exploring a partnership, looking for the right contact or need help with the invitation process, send us a note.</p><div class="contact-details reveal delay-2"><div>⌖ <span>Nepal Britain Chamber of Commerce &amp; Industry (NBCCI)<br>British Embassy Kathmandu<br>Kathmandu, Nepal</span></div><div>✉ <span>Authorised contact details will be published here by the forum team.</span></div></div></div>
-          <form class="site-form contact-form reveal" data-api-form="enquiry" novalidate><div class="form-grid"><label>Name<input name="name" required placeholder="Your name"></label><label>Email<input name="email" required type="email" placeholder="you@organisation.com"></label></div><label>Subject<input name="subject" required placeholder="What can we help with?"></label><label>Message<textarea name="message" required minlength="10" placeholder="Write your message here."></textarea></label><label class="honeypot">Website<input name="website" tabindex="-1" autocomplete="off"></label><div class="form-status" role="status" aria-live="polite"></div><button class="button button-primary" type="submit">Send enquiry <span>↗</span></button></form>
+    <form class="site-form" data-api-form="registration" method="post">
+      {% csrf_token %}
+
+      <div class="form-grid">
+        <label>Full name *<input name="fullName" required placeholder="Your full name"></label>
+        <label>Organisation *<input name="organization" required placeholder="Organisation or institution"></label>
+        <label>Designation *<input name="designation" required placeholder="Your role"></label>
+        <label>Email *<input name="email" type="email" required placeholder="you@organisation.com"></label>
+        <label>Phone *<input name="phone" required placeholder="+977 or +44"></label>
+
+        <label>Country
+          <select name="country">
+            <option>Nepal</option>
+            <option>United Kingdom</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <label>Sector *
+          <select name="sector" required>
+            <option value="">Select sector</option>
+            <option>Government</option>
+            <option>Business</option>
+            <option>Investment</option>
+            <option>Education & Research</option>
+            <option>Development</option>
+            <option>Technology & Startup</option>
+            <option>Media</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <label>Delegate type *
+          <select name="delegateType" required>
+            <option value="">Select type</option>
+            <option>Government</option>
+            <option>Business</option>
+            <option>Investor</option>
+            <option>Academic</option>
+            <option>Development Partner</option>
+            <option>Technology / Startup</option>
+            <option>Media</option>
+            <option>Other</option>
+          </select>
+        </label>
+      </div>
+
+      <fieldset>
+        <legend>Relevant conversations <small>(select all)</small></legend>
+        <div class="checkbox-grid">
+          <label><input type="checkbox" name="interests" value="Trade & Investment"> Trade & Investment</label>
+          <label><input type="checkbox" name="interests" value="Education & Skills"> Education & Skills</label>
+          <label><input type="checkbox" name="interests" value="Energy & Infrastructure"> Energy & Infrastructure</label>
+          <label><input type="checkbox" name="interests" value="Digital Economy & AI"> Digital Economy & AI</label>
+          <label><input type="checkbox" name="interests" value="Green Growth"> Green Growth</label>
+          <label><input type="checkbox" name="interests" value="Other"> Other</label>
         </div>
-      </section>
-    </main>
+      </fieldset>
+
+      <label>Message <small>(optional)</small>
+        <textarea name="message" placeholder="Partnership you are looking for or question for the forum team."></textarea>
+      </label>
+
+      <label class="honeypot">Website
+        <input name="website" tabindex="-1" autocomplete="off">
+      </label>
+
+      <div class="form-status" role="status" aria-live="polite"></div>
+
+      <button class="button button-primary submit-button" type="submit">
+        Submit registration <span>↗</span>
+      </button>
+
+      <p class="form-note">Your information will be used by the forum team to process your registration and contact you about the event.</p>
+    </form>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+  <div class="container form-layout">
+    <div>
+      <div class="section-kicker">Stay in touch / 10</div>
+      <h2>Have a question before you register?</h2>
+      <p>Send us a note if you have questions about the forum, partnership or registration.</p>
+
+      <div class="contact-details">
+        <div>⌖ <span>NBCCI<br>British Embassy Kathmandu<br>Kathmandu, Nepal</span></div>
+        <div>✉ <span>Contact details will be published by the forum team.</span></div>
+      </div>
+    </div>
+
+    <form class="site-form contact-form" data-api-form="contact" method="post">
+      {% csrf_token %}
+
+      <div class="form-grid">
+        <label>Name *<input name="name" required placeholder="Your name"></label>
+        <label>Email *<input name="email" type="email" required placeholder="you@organisation.com"></label>
+      </div>
+
+      <label>Subject *
+        <input name="subject" required placeholder="What can we help with?">
+      </label>
+
+      <label>Message *
+        <textarea name="message" required minlength="10" placeholder="Write your message here."></textarea>
+      </label>
+
+      <label class="honeypot">Website
+        <input name="website" tabindex="-1" autocomplete="off">
+      </label>
+
+      <div class="form-status" role="status" aria-live="polite"></div>
+
+      <button class="button button-primary" type="submit">
+        Send enquiry <span>↗</span>
+      </button>
+    </form>
+  </div>
+</section>
 
     <footer class="site-footer">
-      <div class="container footer-inner"><div><div class="footer-logo"><img src="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png" alt="Nepal Britain Chamber of Commerce &amp; Industry"></div><p>UK–Nepal Business Forum 2026. A platform for the people building shared prosperity.</p></div><div class="footer-right"><div class="footer-nav"><a href="#home">Home</a><a href="#about">About</a><a href="#pillars">Pillars</a><a href="#delegates">Delegates</a><a href="#programme">Programme</a><a href="#gallery">Gallery</a><a href="#outcomes">Outcomes</a><a href="#contact">Contact</a></div><a href="#home">Back to top ↗</a><span class="section-kicker">NBCCI × British Embassy Kathmandu</span></div></div>
+      <div class="container footer-inner"><div><div class="footer-logo"><img src="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png" alt="Nepal Britain Chamber of Commerce &amp; Industry"></div><p>UK–Nepal Business Forum 2026. A platform for the people building shared prosperity.</p></div><div class="footer-right"><div class="footer-nav"><a href="#home">Home</a><a href="#about">About</a><a href="#pillars">Pillars</a><a href="#delegates">Delegates</a><a href="#programme">Programme</a><a href="#panels">Panels</a><a href="#gallery">Gallery</a><a href="#outcomes">Outcomes</a><a href="#contact">Contact</a></div><a href="#home">Back to top ↗</a><span class="section-kicker">NBCCI × British Embassy Kathmandu</span></div></div>
       <div class="container copyright">© 2026 Nepal–Britain Chamber of Commerce and Industry · Kathmandu, Nepal</div>
     </footer>
   </div>

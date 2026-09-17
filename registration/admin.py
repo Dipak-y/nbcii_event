@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Registration, Contact
 
+
 @admin.register(Registration)
 class RegistrationAdmin(admin.ModelAdmin):
     list_display = (
@@ -12,6 +13,7 @@ class RegistrationAdmin(admin.ModelAdmin):
         "country",
         "sector",
         "delegate_type",
+        "interests_display",
         "created_at",
     )
 
@@ -29,8 +31,25 @@ class RegistrationAdmin(admin.ModelAdmin):
         "created_at",
     )
 
+    def interests_display(self, obj):
+        return ", ".join(obj.interests) if obj.interests else "-"
+    
+    interests_display.short_description = "Interests"
+
+
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ("name", "email", "message", "created_at")
-    search_fields = ("name", "email", "message")
-    list_filter = ("created_at",) 
+    list_display = (
+        "name",
+        "email",
+        "message",
+        "created_at",
+    )
+
+    search_fields = (
+        "name",
+        "email",
+        "message",
+    )
+
+    list_filter = ("created_at",)
