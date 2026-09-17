@@ -1,4 +1,3 @@
-{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,8 +8,8 @@
   <meta property="og:description" content="A flagship bilateral platform for UK–Nepal trade, investment and strategic partnership.">
   <meta property="og:type" content="website">
   <title>UK–Nepal Business Forum 2026</title>
-  <link rel="icon" href="{% static 'img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png' %}">
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="icon" href="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png">
+  <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
   <div class="site-shell">
@@ -18,7 +17,7 @@
     <header class="site-header">
       <div class="header-inner">
         <a class="brand-link" href="#home" aria-label="Back to forum introduction">
-          <img class="brand-logo" src="{% static 'img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png' %}" alt="Nepal Britain Chamber of Commerce &amp; Industry">
+          <img class="brand-logo" src="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png" alt="Nepal Britain Chamber of Commerce &amp; Industry">
         </a>
         <nav class="desktop-nav" aria-label="Primary navigation">
           <a class="nav-link active" href="#home">Home</a>
@@ -52,8 +51,12 @@
         <div class="line-art" aria-hidden="true"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="hero-mountain"></span></div>
         <div class="container hero-inner">
           <div class="hero-copy">
-            <div class="reveal section-kicker-line"><span></span><span>UK–Nepal Business Forum 2026</span></div>
-            <h1 class="reveal delay-1">Building stronger partnerships<span class="accent">.</span></h1>
+            <div class="header-inner">
+        <a class="brand-link" href="#home" aria-label="Back to forum introduction">
+          <img class="brand-logo" src="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png" alt="Nepal Britain Chamber of Commerce &amp; Industry">
+        </a>
+        </div>
+            <h1 class="reveal delay-1"><span class="accent">UK–Nepal Business Forum 2026</span></h1>
             <p class="reveal delay-2 hero-lede">Building Stronger Partnerships, Creating Shared Prosperity between Nepal and the United Kingdom.</p>
             <div class="reveal delay-3 hero-buttons">
               <a class="button button-primary" href="#registration">Register your interest <span aria-hidden="true">↗</span></a>
@@ -82,6 +85,10 @@
             <div class="section-kicker">The forum / 01</div>
             <div class="rule"></div>
             <div class="aside-note"><span class="line-icon">⌂</span> Convened by two trusted institutions</div>
+            <figure class="about-image reveal delay-1">
+              <img src="static/img/WhatsApp Image 2026-09-13 at 3.21.40 PM (1).jpeg" alt="Speaker addressing the UK–Nepal Business Forum" loading="lazy">
+              <figcaption>Kathmandu, Nepal · 26 November 2026</figcaption>
+            </figure>
           </div>
           <div class="section-content">
             <h2 class="reveal">A serious conversation, designed to travel beyond the room.</h2>
@@ -103,14 +110,30 @@
             <p>The day is organised around the opportunities that will define the relationship over the next decade. Each room is built for a different kind of useful conversation.</p>
           </div>
           <div class="pillar-grid">
-            {% for pillar in pillars %}
-            <article class="pillar-card reveal delay-{{ forloop.counter }}">
-              <div class="card-meta"><span>{{ pillar.number }}</span><span class="line-icon">{% if forloop.counter == 1 %}▣{% elif forloop.counter == 2 %}◇{% elif forloop.counter == 3 %}◎{% else %}✦{% endif %}</span></div>
-              <h3>{{ pillar.title }}</h3>
-              <p>{{ pillar.body }}</p>
+            <article class="pillar-card reveal delay-1">
+              <div class="card-meta"><span>01</span><span class="line-icon">▣</span></div>
+              <h3>Trade, investment &amp; partnership</h3>
+              <p>Trade, FDI, market access, entrepreneurship and business partnerships.</p>
               <span class="card-link">Explore the room ↗</span>
             </article>
-            {% endfor %}
+            <article class="pillar-card reveal delay-2">
+              <div class="card-meta"><span>02</span><span class="line-icon">◇</span></div>
+              <h3>Education, research &amp; future skills</h3>
+              <p>Transnational education, research, innovation and workforce development.</p>
+              <span class="card-link">Explore the room ↗</span>
+            </article>
+            <article class="pillar-card reveal delay-3">
+              <div class="card-meta"><span>03</span><span class="line-icon">◎</span></div>
+              <h3>Energy, infrastructure &amp; green growth</h3>
+              <p>Clean energy, green hydrogen, battery energy storage systems, engineering and sustainable infrastructure.</p>
+              <span class="card-link">Explore the room ↗</span>
+            </article>
+            <article class="pillar-card reveal delay-4">
+              <div class="card-meta"><span>04</span><span class="line-icon">✦</span></div>
+              <h3>Digital economy, AI &amp; innovation</h3>
+              <p>Digital transformation, AI, GovTech, cybersecurity and emerging technologies.</p>
+              <span class="card-link">Explore the room ↗</span>
+            </article>
           </div>
         </div>
       </section>
@@ -123,9 +146,14 @@
             <p>This is not a spectator event. It is a carefully composed room of people who can open a door, underwrite an idea, shape a policy or build a partnership.</p>
           </div>
           <div class="delegate-grid">
-            {% for delegate in delegates %}
-            <article class="delegate-card reveal"><span class="line-icon">{{ delegate.2 }}</span><h3>{{ delegate.0 }}</h3><p>{{ delegate.1 }}</p></article>
-            {% endfor %}
+            <article class="delegate-card reveal"><span class="line-icon">⌂</span><h3>Government &amp; diplomacy</h3><p>Government of Nepal, UK Government, regulatory agencies, diplomatic missions and the British Embassy Kathmandu.</p></article>
+            <article class="delegate-card reveal"><span class="line-icon">▣</span><h3>Business &amp; industry</h3><p>UK and Nepali companies, industry leaders, SMEs and entrepreneurs.</p></article>
+            <article class="delegate-card reveal"><span class="line-icon">↗</span><h3>Investment &amp; finance</h3><p>Investment funds, banks and development finance institutions.</p></article>
+            <article class="delegate-card reveal"><span class="line-icon">◇</span><h3>Education &amp; research</h3><p>Universities, research institutions and future skills partners.</p></article>
+            <article class="delegate-card reveal"><span class="line-icon">◎</span><h3>Development &amp; institutions</h3><p>Development organisations, chambers and industry associations.</p></article>
+            <article class="delegate-card reveal"><span class="line-icon">✦</span><h3>Technology &amp; startups</h3><p>Technology companies, start-ups and innovation partners.</p></article>
+            <article class="delegate-card reveal"><span class="line-icon">○</span><h3>Media</h3><p>National and international media sharing the story of the partnership.</p></article>
+            <article class="delegate-card reveal"><span class="line-icon">○</span><h3>Diaspora</h3><p>The Nepali diaspora contributing experience, networks and capital.</p></article>
           </div>
         </div>
       </section>
@@ -138,11 +166,36 @@
             <p>A considered sequence from high-level context to practical working sessions, then the conversations that turn good ideas into shared commitments.</p>
           </div>
           <div class="programme-list">
-            {% for item in programme %}
             <div class="programme-row reveal">
-              <time>{{ item.0 }}</time><div><h3>{{ item.1 }}</h3><p>{{ item.2 }}</p></div><span class="programme-type">◷ {{ item.3 }}</span>
+              <time>09:30 - 10:00</time><div><h3>Registration &amp; Networking</h3><p>Arrival, welcome and connections before the formal programme.</p></div><span class="programme-type">◷ ARRIVAL</span>
             </div>
-            {% endfor %}
+            <div class="programme-row reveal">
+              <time>10:00 - 10:45</time><div><h3>Opening Ceremony</h3><p>Advancing the Next Chapter of the UK–Nepal Economic Partnership</p></div><span class="programme-type">◷ PLENARY</span>
+            </div>
+            <div class="programme-row reveal">
+              <time>10:45 - 11:00</time><div><h3>Networking Break &amp; Official Group Photograph</h3><p>A short break and official group photograph.</p></div><span class="programme-type">◷ NETWORKING</span>
+            </div>
+            <div class="programme-row reveal">
+              <time>11:00 - 12:00</time><div><h3>Panel Discussion I</h3><p>Building Global Talent: Strengthening UK–Nepal Partnerships in Transnational Education, Research and Future Skills</p></div><span class="programme-type">◷ PANEL I</span>
+            </div>
+            <div class="programme-row reveal">
+              <time>12:00 - 13:00</time><div><h3>Panel II</h3><p>From Hydropower to Smart Infrastructure — Applying UK Science, AI and Innovation to Nepal's Energy Future</p></div><span class="programme-type">◷ PANEL II</span>
+            </div>
+            <div class="programme-row reveal">
+              <time>13:00 - 14:00</time><div><h3>Networking Lunch</h3><p>Hosted networking for delegates and invited partners.</p></div><span class="programme-type">◷ NETWORKING</span>
+            </div>
+            <div class="programme-row reveal">
+              <time>14:00 - 15:00</time><div><h3>Panel III</h3><p>Strengthening UK–Nepal Economic Partnerships — Advancing Trade, Investment and Private Sector Growth</p></div><span class="programme-type">◷ PANEL III</span>
+            </div>
+            <div class="programme-row reveal">
+              <time>15:00 - 16:00</time><div><h3>Panel IV</h3><p>Accelerating Nepal's Digital Economy — AI, Digital Government and Technology Partnerships with the UK</p></div><span class="programme-type">◷ PANEL IV</span>
+            </div>
+            <div class="programme-row reveal">
+              <time>16:00 - 16:15</time><div><h3>Networking Break</h3><p>A short transition before the closing session.</p></div><span class="programme-type">◷ NETWORKING</span>
+            </div>
+            <div class="programme-row reveal">
+              <time>16:15 - 17:00</time><div><h3>Closing Session</h3><p>Reflections, Strategic Outcomes &amp; Way Forward</p></div><span class="programme-type">◷ CLOSING</span>
+            </div>
           </div>
           <p class="programme-note">Programme details are reproduced from the Forum brief and may be refined as speakers and partners are confirmed.</p>
         </div>
@@ -161,7 +214,7 @@
             <article class="panel-card reveal"><span>03</span><strong>▣</strong><h3>Trade &amp; investment</h3><p>Market access, private sector growth and investment.</p></article>
             <article class="panel-card reveal"><span>04</span><strong>✦</strong><h3>Digital economy &amp; AI</h3><p>Digital government, technology partnerships and innovation.</p></article>
           </div>
-          <div class="tag-row"><span class="section-kicker">At the forum</span><div>{% for tag in "Networking,B2B connections,Government engagement,Investment opportunities,Knowledge exchange,International partnerships,Innovation,Market access"|make_list %}{% endfor %}<span>Networking</span><span>B2B connections</span><span>Government engagement</span><span>Investment opportunities</span><span>Knowledge exchange</span><span>International partnerships</span><span>Innovation</span><span>Market access</span></div></div>
+          <div class="tag-row"><span class="section-kicker">At the forum</span><div><span>Networking</span><span>B2B connections</span><span>Government engagement</span><span>Investment opportunities</span><span>Knowledge exchange</span><span>International partnerships</span><span>Innovation</span><span>Market access</span></div></div>
         </div>
       </section>
 
@@ -173,23 +226,58 @@
             <p>A visual record of the relationships, ideas and shared work that make the UK–Nepal partnership tangible.</p>
           </div>
           <div class="gallery-grid">
-            <figure class="gallery-tile gallery-dialogue reveal">
-              <div class="gallery-window"></div>
-              <div class="gallery-table"></div>
-              <div class="gallery-chair chair-one">
-              </div><div class="gallery-chair chair-two">
-
-              </div><figcaption><span>01 / Connect</span><strong>Tea &amp; dialogue</strong></figcaption>
+            <figure class="gallery-item reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.37 PM (1).jpeg" alt="The forum venue" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">The Venue</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
-            <figure class="gallery-tile gallery-logo reveal">
-              <div class="gallery-orbit orbit-a"></div>
-              <div class="gallery-orbit orbit-b"></div>
-              <div class="gallery-logo-lockup">
-                <img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.21.37 PM (1).jpeg' %}" alt="Nepal Britain Chamber of Commerce &amp; Industry"></div><figcaption><span>02 / Convene</span><strong>One trusted platform</strong></figcaption></figure>
-            <figure class="gallery-tile gallery-place reveal"><div class="gallery-mountain mountain-back"></div><div class="gallery-mountain mountain-front"></div><div class="gallery-sun"></div><figcaption><span>03 / Place</span><strong>Kathmandu, Nepal</strong></figcaption></figure>
-            <figure class="gallery-tile gallery-work reveal"><div class="gallery-grid-lines"></div><div class="gallery-signal signal-one"></div><div class="gallery-signal signal-two"></div><div class="gallery-signal signal-three"></div><figcaption><span>04 / Collaborate</span><strong>Ideas in motion</strong></figcaption></figure>
-            <figure class="gallery-tile gallery-partnership reveal"><div class="gallery-cross cross-one"></div><div class="gallery-cross cross-two"></div><div class="gallery-arrow"></div><figcaption><span>05 / Partner</span><strong>UK <em>↔</em> Nepal</strong></figcaption></figure>
-            <figure class="gallery-tile gallery-next reveal"><div class="gallery-ring ring-one"></div><div class="gallery-ring ring-two"></div><div class="gallery-dot dot-one"></div><div class="gallery-dot dot-two"></div><figcaption><span>06 / Continue</span><strong>The next chapter</strong></figcaption></figure>
+            <figure class="gallery-item reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.37 PM.jpeg" alt="Keynote address at the forum" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">Keynote Address</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+            </figure>
+            <figure class="gallery-item reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.38 PM (2).jpeg" alt="Delegates on stage" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">Delegates</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+            </figure>
+            <figure class="gallery-item reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.39 PM.jpeg" alt="The forum floor" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">The Forum Floor</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+            </figure>
+            <figure class="gallery-item reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.40 PM.jpeg" alt="Fireside conversation" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">Fireside Conversation</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+            </figure>
+            <figure class="gallery-item reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.41 PM (1).jpeg" alt="Partnership in action" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">Partnership in Action</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+            </figure>
+            <figure class="gallery-item gallery-extra reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.38 PM (1).jpeg" alt="Panel discussion at the forum" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">Panel Discussion</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+            </figure>
+            <figure class="gallery-item gallery-extra reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.38 PM.jpeg" alt="Group photograph on stage" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">Group Photograph</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+            </figure>
+            <figure class="gallery-item gallery-extra reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.40 PM (1).jpeg" alt="Opening remarks at the podium" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">Opening Remarks</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+            </figure>
+            <figure class="gallery-item gallery-extra reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.41 PM.jpeg" alt="Sector dialogue panel" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">Sector Dialogue</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+            </figure>
+            <figure class="gallery-item gallery-extra reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.42 PM.jpeg" alt="Expert panel discussion" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">Expert Panel</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+            </figure>
+            <figure class="gallery-item gallery-extra reveal">
+              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.22.02 PM.jpeg" alt="Panel on Nepal market opportunities" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">Market Opportunities</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+            </figure>
+            
+          </div>
+          <div class="gallery-more">
+            <button type="button" class="button button-secondary" data-gallery-toggle>View more <span aria-hidden="true">↓</span></button>
           </div>
         </div>
       </section>
@@ -202,7 +290,10 @@
             <p>The Forum is designed to create visible momentum: stronger dialogue, useful introductions, new institutional collaborations and a follow-up mechanism that carries progress beyond the day.</p>
           </div>
           <div class="outcome-grid">
-            {% for outcome in outcomes %}<article class="outcome-card reveal"><span>0{{ forloop.counter }} / {{ outcome.0 }}</span><p>{{ outcome.1 }}</p></article>{% endfor %}
+            <article class="outcome-card reveal"><span>01 / Strategic</span><p>Stronger UK–Nepal bilateral trade and investment dialogue, and deeper public-private collaboration.</p></article>
+            <article class="outcome-card reveal"><span>02 / Business</span><p>New trade and investment leads, B2B partnerships and stronger market linkages.</p></article>
+            <article class="outcome-card reveal"><span>03 / Institutional</span><p>New collaborations across government, academia, industry and development partners.</p></article>
+            <article class="outcome-card reveal"><span>04 / Legacy</span><p>A pipeline for future trade missions and sector initiatives, with a follow-up mechanism to track progress after the Forum.</p></article>
           </div>
         </div>
       </section>
@@ -228,7 +319,7 @@
               <label>Sector <i>*</i><select name="sector" required><option value="">Select a sector</option><option>Government</option><option>Business</option><option>Investment</option><option>Education &amp; research</option><option>Development</option><option>Technology &amp; startup</option><option>Media</option><option>Other</option></select></label>
               <label>Delegate type <i>*</i><select name="delegateType" required><option value="">Select delegate type</option><option>Government</option><option>Business</option><option>Investor</option><option>Academic</option><option>Development Partner</option><option>Technology / Startup</option><option>Media</option><option>Other</option></select></label>
             </div>
-            <fieldset><legend>Which conversations are most relevant to you? <small>(select all that apply)</small></legend><div class="checkbox-grid">{% for interest in interest_options %}<label><input type="checkbox" name="interests" value="{{ interest }}">{{ interest }}</label>{% endfor %}</div></fieldset>
+            <fieldset><legend>Which conversations are most relevant to you? <small>(select all that apply)</small></legend><div class="checkbox-grid"><label><input type="checkbox" name="interests" value="Trade &amp; Investment">Trade &amp; Investment</label><label><input type="checkbox" name="interests" value="Education &amp; Skills">Education &amp; Skills</label><label><input type="checkbox" name="interests" value="Energy &amp; Infrastructure">Energy &amp; Infrastructure</label><label><input type="checkbox" name="interests" value="Digital Economy &amp; AI">Digital Economy &amp; AI</label><label><input type="checkbox" name="interests" value="Green Growth">Green Growth</label><label><input type="checkbox" name="interests" value="Other">Other</label></div></fieldset>
             <label>Anything you would like us to know? <small>(optional)</small><textarea name="message" placeholder="A partnership you are looking for, or a question for the forum team."></textarea></label>
             <label class="honeypot">Website<input name="website" tabindex="-1" autocomplete="off"></label>
             <div class="form-status" role="status" aria-live="polite"></div><button class="button button-primary submit-button" type="submit">Submit registration <span>↗</span></button><p class="form-note">Your information will be used by the forum team to process this registration and contact you about the event.</p>
@@ -245,10 +336,11 @@
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-inner"><div><div class="footer-logo"><img src="{% static 'forum/images/nbcci-logo.png' %}" alt="Nepal Britain Chamber of Commerce &amp; Industry"></div><p>UK–Nepal Business Forum 2026. A platform for the people building shared prosperity.</p></div><div class="footer-right"><div class="footer-nav"><a href="#home">Home</a><a href="#about">About</a><a href="#pillars">Pillars</a><a href="#delegates">Delegates</a><a href="#programme">Programme</a><a href="#gallery">Gallery</a><a href="#outcomes">Outcomes</a><a href="#contact">Contact</a></div><a href="#home">Back to top ↗</a><span class="section-kicker">NBCCI × British Embassy Kathmandu</span></div></div>
+      <div class="container footer-inner"><div><div class="footer-logo"><img src="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png" alt="Nepal Britain Chamber of Commerce &amp; Industry"></div><p>UK–Nepal Business Forum 2026. A platform for the people building shared prosperity.</p></div><div class="footer-right"><div class="footer-nav"><a href="#home">Home</a><a href="#about">About</a><a href="#pillars">Pillars</a><a href="#delegates">Delegates</a><a href="#programme">Programme</a><a href="#gallery">Gallery</a><a href="#outcomes">Outcomes</a><a href="#contact">Contact</a></div><a href="#home">Back to top ↗</a><span class="section-kicker">NBCCI × British Embassy Kathmandu</span></div></div>
       <div class="container copyright">© 2026 Nepal–Britain Chamber of Commerce and Industry · Kathmandu, Nepal</div>
     </footer>
   </div>
-  <script src="{% static 'scripts.js' %}" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+  <script src="static/scripts.js" defer></script>
 </body>
-</html>.
+</html>

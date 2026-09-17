@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
+  var lenis = null;
+  if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    lenis = new Lenis({
+      duration: 1.1,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true
+    });
+    var raf = function (time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+  }
+
   var menuToggle = document.querySelector('[data-menu-toggle]');
   var mobileNav = document.querySelector('[data-mobile-nav]');
 
@@ -25,7 +39,11 @@ document.addEventListener('DOMContentLoaded', function () {
       var target = document.querySelector(link.getAttribute('href'));
       if (!target) return;
       event.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (lenis) {
+        lenis.scrollTo(target, { offset: 0 });
+      } else {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   });
 
@@ -52,6 +70,18 @@ document.addEventListener('DOMContentLoaded', function () {
     var section = document.getElementById(id);
     if (section) sectionObserver.observe(section);
   });
+
+  var galleryToggle = document.querySelector('[data-gallery-toggle]');
+  if (galleryToggle) {
+    galleryToggle.addEventListener('click', function () {
+      var expanded = galleryToggle.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.gallery-extra').forEach(function (item) {
+        item.classList.toggle('is-visible', !expanded);
+      });
+      galleryToggle.setAttribute('aria-expanded', String(!expanded));
+      galleryToggle.innerHTML = expanded ? 'View more <span aria-hidden="true">↓</span>' : 'View less <span aria-hidden="true">↑</span>';
+    });
+  }
 
   function showStatus(form, type, message) {
     var status = form.querySelector('.form-status');
