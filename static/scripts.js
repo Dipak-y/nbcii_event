@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded',()=>{
 
+const isTouch = matchMedia('(hover: none)').matches;
+
 let lenis;
-if(typeof Lenis!=='undefined'&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+if(!isTouch && typeof Lenis!=='undefined'&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
   lenis=new Lenis({duration:1.1,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
   const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};
   requestAnimationFrame(raf);
@@ -19,21 +21,23 @@ if(menu&&mobile){
     menu.classList.toggle('is-open',!open);
     mobile.classList.toggle('is-open',!open);
   };
-
-  mobile.querySelectorAll('a').forEach(a=>a.onclick=()=>{
-    menu.setAttribute('aria-expanded','false');
-    menu.setAttribute('aria-label','Open menu');
-    menu.classList.remove('is-open');
-    mobile.classList.remove('is-open');
-  });
 }
 
-/* Smooth links */
+function closeMobileMenu(){
+  if(!menu||!mobile)return;
+  menu.setAttribute('aria-expanded','false');
+  menu.setAttribute('aria-label','Open menu');
+  menu.classList.remove('is-open');
+  mobile.classList.remove('is-open');
+}
+
+/* Smooth links (also closes the mobile menu when a link is used) */
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.onclick=e=>{
   const target=document.querySelector(a.getAttribute('href'));
+  closeMobileMenu();
   if(!target)return;
   e.preventDefault();
-  lenis?lenis.scrollTo(target):target.scrollIntoView({behavior:'smooth'});
+  lenis?lenis.scrollTo(target,{offset:-96}):target.scrollIntoView({behavior:'smooth'});
 });
 
 /* Reveal animation */
@@ -44,6 +48,96 @@ const reveal=new IntersectionObserver(es=>{
 },{threshold:.12});
 
 document.querySelectorAll('.reveal').forEach(e=>reveal.observe(e));
+
+/* Teletype effect on the hero title — loops forever */
+(()=>{
+  const heroTitle=document.querySelector('.hero-title');
+  if(!heroTitle)return;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+
+  /* On touch devices, show text statically — no typing loop needed */
+  if(isTouch){
+    /* Just make the text visible immediately, no animation */
+    const walker2=document.createTreeWalker(heroTitle,NodeFilter.SHOW_TEXT,{
+      acceptNode:n=>n.textContent.trim().length?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT
+    });
+    /* Text nodes already have content; nothing to do */
+    return;
+  }
+
+  /* Collect every text node, its parent line element, and full text, then blank them */
+  const walker=document.createTreeWalker(heroTitle,NodeFilter.SHOW_TEXT,{
+    acceptNode:n=>n.textContent.trim().length?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT
+  });
+  const chars=[];   /* [{node, ch, lineEl}] */
+  const nodes=[];   /* unique text nodes in order */
+  let n;
+  while(n=walker.nextNode()){
+    const full=n.textContent;
+    n.textContent='';
+    const lineEl=n.parentElement.closest('.line')||n.parentElement;
+    nodes.push({node:n,full});
+    for(const ch of full)chars.push({node:n,ch,lineEl});
+  }
+  if(!chars.length)return;
+
+  const cursor=document.createElement('span');
+  cursor.className='type-cursor';
+  cursor.setAttribute('aria-hidden','true');
+
+  const TYPE_SPEED        = 52;
+  const ERASE_SPEED       = 28;
+  const PAUSE_AFTER_TYPE  = 2200;
+  const PAUSE_AFTER_ERASE = 500;
+
+  /* Rebuild every node's text from the chars array up to `count` chars typed */
+  function renderAt(count){
+    nodes.forEach(({node})=>{ node.textContent=''; });
+    for(let i=0;i<count;i++) chars[i].node.textContent+=chars[i].ch;
+    if(count>0){
+      chars[count-1].lineEl.appendChild(cursor);
+    } else {
+      chars[0].lineEl.prepend(cursor);
+    }
+  }
+
+  let timer=null;
+  function loop(){
+    let i=0;
+    function typeStep(){
+      renderAt(i);
+      if(i>=chars.length){
+        timer=setTimeout(eraseStart,PAUSE_AFTER_TYPE);
+        return;
+      }
+      i++;
+      timer=setTimeout(typeStep,TYPE_SPEED);
+    }
+    function eraseStart(){
+      timer=setTimeout(eraseStep,ERASE_SPEED);
+    }
+    function eraseStep(){
+      i--;
+      renderAt(i);
+      if(i<=0){
+        timer=setTimeout(loop,PAUSE_AFTER_ERASE);
+        return;
+      }
+      timer=setTimeout(eraseStep,ERASE_SPEED);
+    }
+    typeStep();
+  }
+
+  let running=false;
+  new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting&&!running){
+        running=true;
+        loop();
+      }
+    });
+  },{threshold:.1}).observe(heroTitle);
+})();
 
 /* Active navigation */
 const links=document.querySelectorAll('.nav-link');
