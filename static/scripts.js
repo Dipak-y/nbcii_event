@@ -1,12 +1,69 @@
-document.addEventListener('DOMContentLoaded',()=>{
+function init(){
 
 const isTouch = matchMedia('(hover: none)').matches;
+
+/* On real touch devices there is no cursor, so :hover never fires.
+   Tapping a card applies the same visual state that :hover gives on desktop;
+   tapping elsewhere (or another card) clears it. */
+if(isTouch){
+  const touchGroups = ['.pillar-panel', '.delegate-item', '.outcome-card'];
+  touchGroups.forEach(sel=>{
+    const items = document.querySelectorAll(sel);
+    items.forEach(item=>{
+      item.addEventListener('touchstart', ()=>{
+        items.forEach(i=>{ if(i!==item) i.classList.remove('is-touched'); });
+        item.classList.toggle('is-touched');
+      }, {passive:true});
+    });
+  });
+  document.addEventListener('touchstart', e=>{
+    touchGroups.forEach(sel=>{
+      document.querySelectorAll(sel).forEach(item=>{
+        if(!item.contains(e.target)) item.classList.remove('is-touched');
+      });
+    });
+  }, {passive:true});
+}
+
+/* Hero: keep the exact desktop layout at every screen size — instead of
+   reflowing into a stacked/row-wise mobile view, shrink the whole block
+   as one unit so it always looks like a scaled-down desktop hero. */
+(function scaleHero(){
+  const copy = document.querySelector('.hero-copy');
+  const inner = document.querySelector('.hero-inner');
+  if(!copy||!inner) return;
+  const DESIGN_WIDTH = 1180; // matches .hero-copy's fixed width in CSS
+
+  function apply(){
+    const available = inner.clientWidth;
+    let scale = available / DESIGN_WIDTH;
+    scale = Math.min(scale, 1);   // never enlarge past true desktop size
+    scale = Math.max(scale, 0.34); // stay legible on very small phones
+    copy.style.transform = `scale(${scale})`;
+  }
+
+  apply();
+  window.addEventListener('resize', apply);
+  window.addEventListener('orientationchange', apply);
+})();
 
 let lenis;
 if(!isTouch && typeof Lenis!=='undefined'&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
   lenis=new Lenis({duration:1.1,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
   const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};
   requestAnimationFrame(raf);
+
+  /* Fix: Lenis measures page height once on init. Images that finish
+     loading afterwards (many are lazy-loaded) and web fonts that swap
+     in later both grow the page, but Lenis never finds out — so its
+     cached scroll limit stops short and the footer becomes unreachable.
+     Recalculate whenever the page's real height changes. */
+  window.addEventListener('load', () => lenis.resize());
+  document.fonts && document.fonts.ready.then(() => lenis.resize());
+  document.querySelectorAll('img').forEach(img => {
+    if (!img.complete) img.addEventListener('load', () => lenis.resize());
+  });
+  new ResizeObserver(() => lenis.resize()).observe(document.body);
 }
 
 /* Mobile menu */
@@ -33,7 +90,8 @@ function closeMobileMenu(){
 
 /* Smooth links (also closes the mobile menu when a link is used) */
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.onclick=e=>{
-  const target=document.querySelector(a.getAttribute('href'));
+  const href=a.getAttribute('href');
+  const target=document.querySelector(href);
   closeMobileMenu();
   if(!target)return;
   e.preventDefault();
@@ -48,96 +106,6 @@ const reveal=new IntersectionObserver(es=>{
 },{threshold:.12});
 
 document.querySelectorAll('.reveal').forEach(e=>reveal.observe(e));
-
-/* Teletype effect on the hero title — loops forever */
-(()=>{
-  const heroTitle=document.querySelector('.hero-title');
-  if(!heroTitle)return;
-  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-
-  /* On touch devices, show text statically — no typing loop needed */
-  if(isTouch){
-    /* Just make the text visible immediately, no animation */
-    const walker2=document.createTreeWalker(heroTitle,NodeFilter.SHOW_TEXT,{
-      acceptNode:n=>n.textContent.trim().length?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT
-    });
-    /* Text nodes already have content; nothing to do */
-    return;
-  }
-
-  /* Collect every text node, its parent line element, and full text, then blank them */
-  const walker=document.createTreeWalker(heroTitle,NodeFilter.SHOW_TEXT,{
-    acceptNode:n=>n.textContent.trim().length?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT
-  });
-  const chars=[];   /* [{node, ch, lineEl}] */
-  const nodes=[];   /* unique text nodes in order */
-  let n;
-  while(n=walker.nextNode()){
-    const full=n.textContent;
-    n.textContent='';
-    const lineEl=n.parentElement.closest('.line')||n.parentElement;
-    nodes.push({node:n,full});
-    for(const ch of full)chars.push({node:n,ch,lineEl});
-  }
-  if(!chars.length)return;
-
-  const cursor=document.createElement('span');
-  cursor.className='type-cursor';
-  cursor.setAttribute('aria-hidden','true');
-
-  const TYPE_SPEED        = 52;
-  const ERASE_SPEED       = 28;
-  const PAUSE_AFTER_TYPE  = 2200;
-  const PAUSE_AFTER_ERASE = 500;
-
-  /* Rebuild every node's text from the chars array up to `count` chars typed */
-  function renderAt(count){
-    nodes.forEach(({node})=>{ node.textContent=''; });
-    for(let i=0;i<count;i++) chars[i].node.textContent+=chars[i].ch;
-    if(count>0){
-      chars[count-1].lineEl.appendChild(cursor);
-    } else {
-      chars[0].lineEl.prepend(cursor);
-    }
-  }
-
-  let timer=null;
-  function loop(){
-    let i=0;
-    function typeStep(){
-      renderAt(i);
-      if(i>=chars.length){
-        timer=setTimeout(eraseStart,PAUSE_AFTER_TYPE);
-        return;
-      }
-      i++;
-      timer=setTimeout(typeStep,TYPE_SPEED);
-    }
-    function eraseStart(){
-      timer=setTimeout(eraseStep,ERASE_SPEED);
-    }
-    function eraseStep(){
-      i--;
-      renderAt(i);
-      if(i<=0){
-        timer=setTimeout(loop,PAUSE_AFTER_ERASE);
-        return;
-      }
-      timer=setTimeout(eraseStep,ERASE_SPEED);
-    }
-    typeStep();
-  }
-
-  let running=false;
-  new IntersectionObserver(es=>{
-    es.forEach(e=>{
-      if(e.isIntersecting&&!running){
-        running=true;
-        loop();
-      }
-    });
-  },{threshold:.1}).observe(heroTitle);
-})();
 
 /* Active navigation */
 const links=document.querySelectorAll('.nav-link');
@@ -242,4 +210,7 @@ document.querySelectorAll('[data-api-form]').forEach(form=>{
 
 });
 
-});
+}
+
+// defer guarantees DOM is ready — call immediately
+init();

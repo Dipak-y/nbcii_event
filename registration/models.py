@@ -1,10 +1,5 @@
-from django.core.validators import RegexValidator
 from django.db import models
 
-phone_validator = RegexValidator(
-    regex=r"^[+0-9()\s-]{7,}$",
-    message="Enter a valid phone number.",
-)
 
 
 class Registration(models.Model):
@@ -19,9 +14,9 @@ class Registration(models.Model):
         ("Government", "Government"),
         ("Business", "Business"),
         ("Investment", "Investment"),
-        ("Education & research", "Education & research"),
+        ("Education & Research", "Education & Research"),
         ("Development", "Development"),
-        ("Technology & startup", "Technology & startup"),
+        ("Technology & Startup", "Technology & Startup"),
         ("Media", "Media"),
         ("Other", "Other"),
     ]
@@ -46,11 +41,12 @@ class Registration(models.Model):
         ("Other", "Other"),
     ]
 
+
     full_name = models.CharField(max_length=100)
     organization = models.CharField(max_length=150)
     designation = models.CharField(max_length=100)
     email = models.EmailField()
-    phone = models.CharField(max_length=30, validators=[phone_validator])
+    phone = models.CharField(max_length=30)
     country = models.CharField(max_length=100, choices=COUNTRY_CHOICES, default="Nepal")
     sector = models.CharField(max_length=100, choices=SECTOR_CHOICES)
     delegate_type = models.CharField(max_length=100, choices=DELEGATE_CHOICES)
@@ -58,11 +54,6 @@ class Registration(models.Model):
     message = models.TextField(blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ["-created_at"]
-        verbose_name = "Registration"
-        verbose_name_plural = "Registrations"
 
     def __str__(self):
         return self.full_name
@@ -75,10 +66,5 @@ class Contact(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        ordering = ["-created_at"]
-        verbose_name = "Contact enquiry"
-        verbose_name_plural = "Contact enquiries"
-
     def __str__(self):
-        return self.name
+        return self.name        
