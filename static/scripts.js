@@ -6,7 +6,7 @@ const isTouch = matchMedia('(hover: none)').matches;
    Tapping a card applies the same visual state that :hover gives on desktop;
    tapping elsewhere (or another card) clears it. */
 if(isTouch){
-  const touchGroups = ['.pillar-panel', '.delegate-item', '.outcome-card'];
+  const touchGroups = ['.pillar-panel', '.programme-row', '.delegate-item', '.outcome-card'];
   touchGroups.forEach(sel=>{
     const items = document.querySelectorAll(sel);
     items.forEach(item=>{
@@ -214,3 +214,56 @@ document.querySelectorAll('[data-api-form]').forEach(form=>{
 
 // defer guarantees DOM is ready — call immediately
 init();
+
+/* ---- Delegates: interactive index (hover / focus / click a group -> spotlight panel; accordion on phones) ---- */
+(function () {
+  var root = document.getElementById('delegates');
+  if (!root) return;
+  var items = Array.prototype.slice.call(root.querySelectorAll('.dg-item'));
+  var panel = root.querySelector('.dg-panel');
+  var body = root.querySelector('.dg-panel-body');
+  var elIcon = root.querySelector('.dg-icon i');
+  var elCount = root.querySelector('.dg-count');
+  var elTitle = root.querySelector('.dg-title');
+  var elText = root.querySelector('.dg-text');
+  var mobile = window.matchMedia('(max-width: 820px)');
+  var current = 0, timer;
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  function paint(i) {
+    var it = items[i];
+    elIcon.className = 'fas ' + it.getAttribute('data-icon');
+    elCount.textContent = 'Group ' + pad(i + 1) + ' / ' + pad(items.length);
+    elTitle.textContent = it.querySelector('.dg-name').textContent;
+    elText.textContent = it.querySelector('.dg-desc').textContent;
+    panel.setAttribute('data-num', pad(i + 1));
+  }
+
+  function activate(i) {
+    items.forEach(function (it, idx) {
+      var on = idx === i;
+      it.classList.toggle('is-active', on);
+      it.querySelector('.dg-tab').setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+    if (i === current) return;
+    current = i;
+    clearTimeout(timer);
+    body.classList.add('is-out');
+    timer = setTimeout(function () { paint(i); body.classList.remove('is-out'); }, 160);
+  }
+
+  items.forEach(function (it, i) {
+    var tab = it.querySelector('.dg-tab');
+    it.addEventListener('mouseenter', function () { if (!mobile.matches) activate(i); });
+    tab.addEventListener('focus', function () { if (!mobile.matches) activate(i); });
+    tab.addEventListener('click', function () {
+      if (mobile.matches && it.classList.contains('is-active')) {
+        it.classList.remove('is-active');
+        tab.setAttribute('aria-expanded', 'false');
+      } else {
+        activate(i);
+      }
+    });
+  });
+})();
