@@ -353,218 +353,128 @@
         </div>
       </section>
 
-      <section class="section partnership-section">
-        <div class="container split-grid">
-          <div class="reveal section-heading">
-            <div class="section-kicker-title">Partnership</div>
-            <h2>Convened with trust. Built for the next chapter.</h2>
-            <p>Organised by the Nepal Britain Chamber of Commerce &amp; Industry (NBCCI), in joint partnership with the British Embassy Kathmandu.</p></div>
-          <div class="reveal partnership-content">
-            <span class="section-kicker-title">Our convening partners</span>
-            <div class="partner-grid"><div class="partner-card reveal delay-1">
-              <div class="partner-logo"><img src="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png" alt="Nepal Britain Chamber of Commerce &amp; Industry logo" loading="lazy">
-              </div><strong>NBCCI</strong><p>Connecting businesses and strengthening UK–Nepal commercial ties.</p></div>
-              <div class="partner-card reveal delay-2">
-                <div class="partner-logo">
-                  <img src="static/img/British Embassy Logo.jpeg" alt="British Embassy Kathmandu logo" loading="lazy"></div><strong>British Embassy Kathmandu</strong><p>Supporting a modern, productive and ambitious bilateral relationship.</p></div></div><a class="button button-secondary" href="#contact">Talk to the forum team <span>↗</span></a></div>
-        </div>
+    <section class="section partnership-section">
+      <div class="container split-grid">
+        <div class="reveal section-heading">
+          <div class="section-kicker-title">Partnership</div>
+          <h2>Convened with trust. Built for the next chapter.</h2>
+          <p>Organised by the Nepal Britain Chamber of Commerce &amp; Industry (NBCCI), in joint partnership with the British Embassy Kathmandu.</p></div>
+        <div class="reveal partnership-content">
+          <span class="section-kicker-title">Our convening partners</span>
+          <div class="partner-grid"><div class="partner-card reveal delay-1">
+            <div class="partner-logo"><img src="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png" alt="Nepal Britain Chamber of Commerce &amp; Industry logo" loading="lazy">
+            </div><strong>NBCCI</strong><p>Connecting businesses and strengthening UK–Nepal commercial ties.</p></div>
+            <div class="partner-card reveal delay-2">
+              <div class="partner-logo">
+                <img src="static/img/British Embassy Logo.jpeg" alt="British Embassy Kathmandu logo" loading="lazy"></div><strong>British Embassy Kathmandu</strong><p>Supporting a modern, productive and ambitious bilateral relationship.</p></div></div><a class="button button-secondary" href="#contact">Talk to the forum team <span>↗</span></a></div>
+      </div>
       </section>
 
-      <!-- REGISTRATION -->
-<!-- <section class="section registration-section" id="registration">
-  <div class="container form-layout">
-    <div class="form-intro">
-      <div class="section-kicker-title">Registration</div>
-      <h2 id="registration-title">Put your name in the conversation.</h2>
-      <p>Tell us about your role and the conversations you want to have. The forum team will review your registration and contact you.</p>
-      <div class="form-facts">
-        <div>◷ <span>26 November 2026<br><strong>Kathmandu, Nepal</strong></span></div>
-        <div>◎ <span>Senior delegates and invited partners<br><strong>Registration subject to confirmation</strong></span></div>
+
+      <!-- VENUE -->
+    <section class="section venue-section" id="venue">
+      <div class="container venue-grid">
+        <div class="reveal venue-map">
+          <iframe
+            src="https://www.google.com/maps?q=Kathmandu+Marriott+Hotel,+Kathmandu,+Nepal&output=embed"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Map showing Kathmandu Marriott Hotel"></iframe>
+        </div>
+        <div class="reveal delay-1 section-heading venue-info">
+          <div class="section-kicker-title">Venue</div>
+          <h2>Kathmandu Marriott Hotel</h2>
+          <p>The Forum will be hosted at the Kathmandu Marriott Hotel, Nepal &mdash; a central, easy-to-reach venue for delegates travelling from across Kathmandu and abroad.</p>
+          <div class="venue-address">
+            <i class="fas fa-location-dot" aria-hidden="true"></i>
+            <span><strong>Kathmandu Marriott Hotel</strong>Naya Bazar, Naxal, Kathmandu 44600, Nepal</span>
+          </div>
+          <a class="button venue-button" href="https://www.google.com/maps/search/?api=1&query=Kathmandu+Marriott+Hotel" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <form class="site-form" data-api-form="registration" method="post">
-      {% csrf_token %}
 
-      <div class="form-grid">
-        <label>Full name *<input name="fullName" required placeholder="Your full name"></label>
-        <label>Organisation *<input name="organization" required placeholder="Organisation or institution"></label>
-        <label>Designation *<input name="designation" required placeholder="Your role"></label>
-        <label>Email *<input name="email" type="email" required placeholder="you@organisation.com"></label>
-        <label>Phone *<input name="phone" required placeholder="+977 or +44"></label>
+  <!-- CONTACT -->
+  <section class="section contact-section" id="contact">
+    <div class="container form-layout">
+      <div>
+        <div class="section-kicker-title">Contact</div>
+        <h2>If you have any questions, feel free to reach out to us.</h2>
+        <p>Send us a note if you have questions about the forum, partnership.</p>
 
-        <label>Country
-          <select name="country">
-            <option>Nepal</option>
-            <option>United Kingdom</option>
-            <option>Other</option>
-          </select>
+        <div class="contact-details">
+          <div class="location-info">
+            <img src="{% static 'img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png' %}" alt="NBCCI">
+            <img src="{% static 'img/British Embassy Logo.jpeg' %}" alt="British Embassy">
+            <span>NBCCI<br>British Embassy Kathmandu<br>Kathmandu, Nepal</span>
+          </div>
+          <div>✉ <span><a href="mailto:info@nbcci.org">info@nbcci.org</a></span></div>
+          <div class="social-links">
+            <a href="https://www.facebook.com/people/Nepal-Britain-Chamber-of-Commerce-and-Industry/100076827198751/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/nepal-britain-chamber-of-commerce-and-industry" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/nbcci/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <form class="site-form contact-form" data-api-form="contact" method="post">
+        {% csrf_token %}
+
+        <div class="form-grid">
+          <label>Name *<input name="name" required placeholder="Your name"></label>
+          <label>Email *<input name="email" type="email" required placeholder="you@organisation.com"></label>
+        </div>
+
+        <label>Subject *
+          <input name="subject" required placeholder="What can we help with?">
         </label>
 
-        <label>Sector *
-          <select name="sector" required>
-            <option value="">Select sector</option>
-            <option>Government</option>
-            <option>Business</option>
-            <option>Investment</option>
-            <option>Education & Research</option>
-            <option>Development</option>
-            <option>Technology & Startup</option>
-            <option>Media</option>
-            <option>Other</option>
-          </select>
+        <label>Message *
+          <textarea name="message" required minlength="10" placeholder="Write your message here."></textarea>
         </label>
 
-        <label>Delegate type *
-          <select name="delegateType" required>
-            <option value="">Select type</option>
-            <option>Government</option>
-            <option>Business</option>
-            <option>Investor</option>
-            <option>Academic</option>
-            <option>Development Partner</option>
-            <option>Technology / Startup</option>
-            <option>Media</option>
-            <option>Other</option>
-          </select>
+        <label class="honeypot">Website
+          <input name="website" tabindex="-1" autocomplete="off">
         </label>
-      </div>
 
-      <fieldset>
-        <legend>Relevant conversations <small>(select all)</small></legend>
-        <div class="checkbox-grid">
-          <label><input type="checkbox" name="interests" value="Trade & Investment"> Trade & Investment</label>
-          <label><input type="checkbox" name="interests" value="Education & Skills"> Education & Skills</label>
-          <label><input type="checkbox" name="interests" value="Energy & Infrastructure"> Energy & Infrastructure</label>
-          <label><input type="checkbox" name="interests" value="Digital Economy & AI"> Digital Economy & AI</label>
-          <label><input type="checkbox" name="interests" value="Green Growth"> Green Growth</label>
-          <label><input type="checkbox" name="interests" value="Other"> Other</label>
-        </div>
-      </fieldset>
+        <div class="form-status" role="status" aria-live="polite"></div>
 
-      <label>Message <small>(optional)</small>
-        <textarea name="message" placeholder="Partnership you are looking for or question for the forum team."></textarea>
-      </label>
-
-      <label class="honeypot">Website
-        <input name="website" tabindex="-1" autocomplete="off">
-      </label>
-
-      <div class="form-status" role="status" aria-live="polite"></div>
-
-      <button class="button button-primary submit-button" type="submit">
-        Submit registration <span>↗</span>
-      </button>
-
-      <p class="form-note">Your information will be used by the forum team to process your registration and contact you about the event.</p>
-    </form>
-  </div>
-  </div>
-</section> -->
-
-  <!-- VENUE -->
-<section class="section venue-section" id="venue">
-  <div class="container venue-grid">
-    <div class="reveal venue-map">
-      <iframe
-        src="https://www.google.com/maps?q=Kathmandu+Marriott+Hotel,+Kathmandu,+Nepal&output=embed"
-        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade" title="Map showing Kathmandu Marriott Hotel"></iframe>
+        <button class="button button-primary" type="submit">
+          Send enquiry <span>↗</span>
+        </button>
+      </form>
     </div>
-    <div class="reveal delay-1 section-heading venue-info">
-      <div class="section-kicker-title">Venue</div>
-      <h2>Kathmandu Marriott Hotel</h2>
-      <p>The Forum will be hosted at the Kathmandu Marriott Hotel, Nepal &mdash; a central, easy-to-reach venue for delegates travelling from across Kathmandu and abroad.</p>
-      <div class="venue-address">
-        <i class="fas fa-location-dot" aria-hidden="true"></i>
-        <span><strong>Kathmandu Marriott Hotel</strong>Naya Bazar, Naxal, Kathmandu 44600, Nepal</span>
-      </div>
-      <a class="button venue-button" href="https://www.google.com/maps/search/?api=1&query=Kathmandu+Marriott+Hotel" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a>
-    </div>
-  </div>
-</section>
 
 
-<!-- CONTACT -->
-<section class="section contact-section" id="contact">
-  <div class="container form-layout">
-    <div>
-      <div class="section-kicker-title">Contact</div>
-      <h2>Have a question before you register?</h2>
-      <p>Send us a note if you have questions about the forum, partnership or registration.</p>
-
-      <div class="contact-details">
-        <div class="location-info">
-          <img src="{% static 'img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png' %}" alt="NBCCI">
-          <img src="{% static 'img/British Embassy Logo.jpeg' %}" alt="British Embassy">
-          <span>NBCCI<br>British Embassy Kathmandu<br>Kathmandu, Nepal</span>
+    </section>
+    <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-logo">
+          <img src="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png" alt="Nepal Britain Chamber of Commerce & Industry">
+          <span class="footer-logo-divider" aria-hidden="true">|</span>
+          <img src="static/img/ChatGPT Image Sep 17, 2026, 11_58_50 AM.png" alt="British Embassy Kathmandu">
         </div>
-        <div>✉ <span><a href="mailto:info@nbcci.org">info@nbcci.org</a></span></div>
-         <div class="social-links">
-          <a href="https://www.facebook.com/people/Nepal-Britain-Chamber-of-Commerce-and-Industry/100076827198751/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.linkedin.com/company/nepal-britain-chamber-of-commerce-and-industry" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://www.instagram.com/nbcci/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <p>UK–Nepal Business Forum 2026. A platform for the people building shared prosperity.</p>
+        <div class="footer-contact">
+          <a href="mailto:info@nbcci.org"><i class="fas fa-envelope"></i>info@nbcci.org</a>
+          <div class="social-links">
+            <a href="https://www.facebook.com/people/Nepal-Britain-Chamber-of-Commerce-and-Industry/100076827198751/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.linkedin.com/company/nepal-britain-chamber-of-commerce-and-industry" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/nbcci/" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
         </div>
       </div>
-    </div>
-
-    <form class="site-form contact-form" data-api-form="contact" method="post">
-      {% csrf_token %}
-
-      <div class="form-grid">
-        <label>Name *<input name="name" required placeholder="Your name"></label>
-        <label>Email *<input name="email" type="email" required placeholder="you@organisation.com"></label>
-      </div>
-
-      <label>Subject *
-        <input name="subject" required placeholder="What can we help with?">
-      </label>
-
-      <label>Message *
-        <textarea name="message" required minlength="10" placeholder="Write your message here."></textarea>
-      </label>
-
-      <label class="honeypot">Website
-        <input name="website" tabindex="-1" autocomplete="off">
-      </label>
-
-      <div class="form-status" role="status" aria-live="polite"></div>
-
-      <button class="button button-primary" type="submit">
-        Send enquiry <span>↗</span>
-      </button>
-    </form>
-  </div>
-</section>
-
-   <footer class="site-footer">
-  <div class="container footer-inner">
-    <div>
-      <div class="footer-logo">
-        <img src="static/img/ChatGPT Image Sep 16, 2026, 05_01_51 PM.png" alt="Nepal Britain Chamber of Commerce & Industry">
-        <span class="footer-logo-divider" aria-hidden="true">|</span>
-        <img src="static/img/ChatGPT Image Sep 17, 2026, 11_58_50 AM.png" alt="British Embassy Kathmandu">
-      </div>
-      <p>UK–Nepal Business Forum 2026. A platform for the people building shared prosperity.</p>
-      <div class="footer-contact">
-        <a href="mailto:info@nbcci.org"><i class="fas fa-envelope"></i>info@nbcci.org</a>
-        <div class="social-links">
-          <a href="https://www.facebook.com/people/Nepal-Britain-Chamber-of-Commerce-and-Industry/100076827198751/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.linkedin.com/company/nepal-britain-chamber-of-commerce-and-industry" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://www.instagram.com/nbcci/" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
+      <div class="footer-right">
+        <div class="footer-nav"><a href="#home">Home</a><a href="#about">About</a><a href="#pillars">Pillars</a><a href="#delegates">Delegates</a><a href="#programme">Programme</a><a href="#gallery">Gallery</a><a href="#outcomes">Outcomes</a><a href="#contact">Contact</a></div>
+        <a href="#home">Back to top ↗</a>
+        <span class="section-kicker">NBCCI × British Embassy Kathmandu</span>
       </div>
     </div>
-    <div class="footer-right">
-      <div class="footer-nav"><a href="#home">Home</a><a href="#about">About</a><a href="#pillars">Pillars</a><a href="#delegates">Delegates</a><a href="#programme">Programme</a><a href="#gallery">Gallery</a><a href="#outcomes">Outcomes</a><a href="#contact">Contact</a></div>
-      <a href="#home">Back to top ↗</a>
-      <span class="section-kicker">NBCCI × British Embassy Kathmandu</span>
+    <div class="container copyright">© 2026 Nepal–Britain Chamber of Commerce and Industry · Kathmandu, Nepal</div>
+  </footer>
     </div>
-  </div>
-  <div class="container copyright">© 2026 Nepal–Britain Chamber of Commerce and Industry · Kathmandu, Nepal</div>
-</footer>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
-  <script src="static/scripts.js" defer></script>
-</body>
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+    <script src="static/scripts.js" defer></script>
+  </body>
+  </html>
