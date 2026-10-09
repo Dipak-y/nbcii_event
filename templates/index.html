@@ -14,22 +14,23 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-
 <body>
 
   <div class="site-shell">
-    <div class="topbar">Kathmandu · 26 November 2026 · By invitation and registration</div>
+    <div class="topbar">Kathmandu &middot; 26 November 2026 &middot; By invitation and registration</div>
     <header class="site-header">
       <div class="header-inner">
         <div class="brand-group">
-          <a class="brand-link" href="#home" aria-label="Back to forum introduction">
-            <img class="brand-logo" src="static/img/british_logo_transparent.png" alt="Nepal Britain Chamber of Commerce &amp; Industry">
+          <a class="brand-link" href="https://nbcci.org/" aria-label="UK–Nepal Business Forum home">
+            <img class="brand-logo" src="{% static 'img/british_logo_transparent.png' %}" alt="British Embassy Kathmandu">
           </a>
           <span class="brand-divider" aria-hidden="true">|</span>
-          <img class="brand-logo brand-logo-partner" src="static\img\nbcci_logo_transparent.png" alt="British Embassy Kathmandu">
+          <a class="brand-link" href="https://nbcci.org/" aria-label="UK–Nepal Business Forum home">
+            <img class="brand-logo brand-logo-partner" src="{% static 'img/nbcci_logo_transparent.png' %}" alt="Nepal Britain Chamber of Commerce and Industry">
+          </a>
         </div>
         <nav class="desktop-nav" aria-label="Primary navigation">
-          <a class="nav-link active" href="#home">Home</a>
+          <a class="nav-link" href="#home">Home</a>
           <a class="nav-link" href="#about">About</a>
           <a class="nav-link" href="#pillars">Pillars</a>
           <a class="nav-link" href="#delegates">Delegates</a>
@@ -38,21 +39,24 @@
           <a class="nav-link" href="#outcomes">Outcomes</a>
         </nav>
         <div class="header-actions">
-          <a class="button button-primary header-register" href="#contact">Contact <span aria-hidden="true">↗</span></a>
-          <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-menu-toggle><span></span><span></span><span></span></button>
+          <a class="button button-primary header-register" href="#contact">Contact <span aria-hidden="true">&#8599;</span></a>
+          <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-navigation" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
         </div>
       </div>
-      <nav class="mobile-nav" aria-label="Mobile navigation" data-mobile-nav>
-        <a href="#home">Home <span>›</span></a>
-        <a href="#about">About <span>›</span></a>
-        <a href="#pillars">Pillars <span>›</span></a>
-        <a href="#delegates">Delegates <span>›</span></a>
-        <a href="#programme">Programme <span>›</span></a>
-        <a href="#gallery">Gallery <span>›</span></a>
-        <a href="#outcomes">Outcomes <span>›</span></a>
+      <nav class="mobile-nav" id="mobile-navigation" data-mobile-nav aria-label="Mobile navigation">
+        <a href="#home">Home <span aria-hidden="true">&#8594;</span></a>
+        <a href="#about">About <span aria-hidden="true">&#8594;</span></a>
+        <a href="#pillars">Pillars <span aria-hidden="true">&#8594;</span></a>
+        <a href="#delegates">Delegates <span aria-hidden="true">&#8594;</span></a>
+        <a href="#programme">Programme <span aria-hidden="true">&#8594;</span></a>
+        <a href="#gallery">Gallery <span aria-hidden="true">&#8594;</span></a>
+        <a href="#outcomes">Outcomes <span aria-hidden="true">&#8594;</span></a>
+        <a href="#venue">Venue <span aria-hidden="true">&#8594;</span></a>
+        <a href="#contact">Contact <span aria-hidden="true">&#8594;</span></a>
       </nav>
     </header>
-
     <main>
       <section class="hero" id="home">
       
@@ -85,7 +89,7 @@
           </div>
           <div class="split-grid about-grid">
             <figure class="about-image reveal delay-1">
-              <img src="static/img/about_image.jpeg" alt="Speaker addressing the UK–Nepal Business Forum" loading="lazy">
+              <img src="{% static 'img/about_image.jpeg' %}" alt="Speaker delivering opening remarks at the UK–Nepal Business Forum" loading="lazy">
               
             </figure>
           <div class="section-content">
@@ -213,34 +217,34 @@
           </div>
           <div class="programme-list">
             <div class="programme-row reveal">
-              <time>09:30 - 10:00</time><div><h3>Registration &amp; Networking</h3><p>Arrival, welcome and connections before the formal programme.</p></div><span class="programme-type"></span>
+              <time>09:30 - 10:00</time><div><h3>Registration &amp; Networking</h3><p>Arrival, welcome and connections before the formal programme.</p></div>
             </div>
             <div class="programme-row reveal">
-              <time>10:00 - 10:45</time><div><h3>Opening Ceremony</h3><p>Advancing the Next Chapter of the UK–Nepal Economic Partnership</p></div><span class="programme-type"></span>
+              <time>10:00 - 10:45</time><div><h3>Opening Ceremony</h3><p>Advancing the Next Chapter of the UK–Nepal Economic Partnership</p></div>
             </div>
             <div class="programme-row reveal">
-              <time>10:45 - 11:00</time><div><h3>Networking Break &amp; Official Group Photograph</h3><p>A short break and official group photograph.</p></div><span class="programme-type"></span>
+              <time>10:45 - 11:00</time><div><h3>Networking Break &amp; Official Group Photograph</h3><p>A short break and official group photograph.</p></div>
             </div>
             <div class="programme-row reveal">
-              <time>11:00 - 12:00</time><div><h3>Panel Discussion I</h3><p>Building Global Talent: Strengthening UK–Nepal Partnerships in Transnational Education, Research and Future Skills</p></div><span class="programme-type"></span>
+              <time>11:00 - 12:00</time><div><h3>Panel Discussion I</h3><p>Building Global Talent: Strengthening UK–Nepal Partnerships in Transnational Education, Research and Future Skills</p></div>
             </div>
             <div class="programme-row reveal">
-              <time>12:00 - 13:00</time><div><h3>Panel II</h3><p>From Hydropower to Smart Infrastructure: Applying UK Science, AI and Innovation to Nepal's Energy Future</p></div><span class="programme-type"></span>
+              <time>12:00 - 13:00</time><div><h3>Panel II</h3><p>From Hydropower to Smart Infrastructure: Applying UK Science, AI and Innovation to Nepal's Energy Future</p></div>
             </div>
             <div class="programme-row reveal">
-              <time>13:00 - 14:00</time><div><h3>Networking Lunch</h3><p>Hosted networking for delegates and invited partners.</p></div><span class="programme-type"></span>
+              <time>13:00 - 14:00</time><div><h3>Networking Lunch</h3><p>Hosted networking for delegates and invited partners.</p></div>
             </div>
             <div class="programme-row reveal">
-              <time>14:00 - 15:00</time><div><h3>Panel III</h3><p>Strengthening UK–Nepal Economic Partnerships: Advancing Trade, Investment and Private Sector Growth</p></div><span class="programme-type"></span>
+              <time>14:00 - 15:00</time><div><h3>Panel III</h3><p>Strengthening UK–Nepal Economic Partnerships: Advancing Trade, Investment and Private Sector Growth</p></div>
             </div>
             <div class="programme-row reveal">
-              <time>15:00 - 16:00</time><div><h3>Panel IV</h3><p>Accelerating Nepal's Digital Economy: AI, Digital Government and Technology Partnerships with the UK</p></div><span class="programme-type"></span>
+              <time>15:00 - 16:00</time><div><h3>Panel IV</h3><p>Accelerating Nepal's Digital Economy: AI, Digital Government and Technology Partnerships with the UK</p></div>
             </div>
             <div class="programme-row reveal">
-              <time>16:00 - 16:15</time><div><h3>Networking Break</h3><p>A short transition before the closing session.</p></div><span class="programme-type"></span>
+              <time>16:00 - 16:15</time><div><h3>Networking Break</h3><p>A short transition before the closing session.</p></div>
             </div>
             <div class="programme-row reveal">
-              <time>16:15 - 17:00</time><div><h3>Closing Session</h3><p>Reflections, Strategic Outcomes &amp; Way Forward</p></div><span class="programme-type"></span>
+              <time>16:15 - 17:00</time><div><h3>Closing Session</h3><p>Reflections, Strategic Outcomes &amp; Way Forward</p></div>
             </div>
           </div>
         </div>
@@ -254,51 +258,51 @@
           </div>
           <div class="gallery-grid">
             <figure class="gallery-item reveal">
-              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.37 PM (1).jpeg" alt="The forum venue" loading="lazy"></div>
+              <div class="gallery-frame"><img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.21.37 PM (1).jpeg' %}" alt="The forum venue" loading="lazy"></div>
               <figcaption><span class="gallery-caption-text">UK–Nepal Business Forum 2025 taking place at the main conference venue in Kathmandu</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             <figure class="gallery-item reveal">
-              <div class="gallery-frame"><img src="static/img/about_image.jpeg" alt="Keynote address at the forum" loading="lazy"></div>
+              <div class="gallery-frame"><img src="{% static 'img/about_image.jpeg' %}" alt="The forum venue" loading="lazy"></div>
               <figcaption><span class="gallery-caption-text">Keynote Address at the UK–Nepal Business Forum 2025</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             <figure class="gallery-item reveal">
-              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.38 PM (2).jpeg" alt="Delegates on stage" loading="lazy"></div>
+              <div class="gallery-frame"><img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.21.38 PM (2).jpeg' %}" alt="Delegates on stage" loading="lazy"></div>
               <figcaption><span class="gallery-caption-text">UK and Nepal business leaders and delegates gathered together during the Business Forum</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             <figure class="gallery-item reveal">
-              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.39 PM.jpeg" alt="The forum floor" loading="lazy"></div>
+              <div class="gallery-frame"><img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.21.39 PM.jpeg' %}" alt="The forum floor" loading="lazy"></div>
               <figcaption><span class="gallery-caption-text">Business leaders and delegates taking part in a panel discussion during the UK–Nepal Business Forum</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             <figure class="gallery-item reveal">
-              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.40 PM.jpeg" alt="Fireside conversation" loading="lazy"></div>
+              <div class="gallery-frame"><img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.21.40 PM.jpeg' %}" alt="Fireside conversation" loading="lazy"></div>
               <figcaption><span class="gallery-caption-text">High-level speakers sharing their views during an engaging business and economic discussion</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             <figure class="gallery-item reveal">
-              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.41 PM (1).jpeg" alt="Partnership in action" loading="lazy"></div>
+              <div class="gallery-frame"><img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.21.41 PM (1).jpeg' %}" alt="Partnership in action" loading="lazy"></div>
               <figcaption><span class="gallery-caption-text">Delegates and business representatives connecting and building relationships throughout the UK–Nepal Business Forum</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             <figure class="gallery-item reveal">
-              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.38 PM (1).jpeg" alt="Panel discussion at the forum" loading="lazy"></div>
+              <div class="gallery-frame"><img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.21.38 PM (1).jpeg' %}" alt="Panel discussion at the forum" loading="lazy"></div>
               <figcaption><span class="gallery-caption-text">Panel Discussion at the UK–Nepal Business Forum 2025</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             <figure class="gallery-item reveal">
-              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.38 PM.jpeg" alt="Group photograph on stage" loading="lazy"></div>
+              <div class="gallery-frame"><img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.21.38 PM.jpeg' %}" alt="Group photograph on stage" loading="lazy"></div>
               <figcaption><span class="gallery-caption-text">UK–Nepal Business Forum 2025 Group Photograph</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             <figure class="gallery-item gallery-extra reveal">
-              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.40 PM (1).jpeg" alt="Opening remarks at the podium" loading="lazy"></div>
-              <figcaption><span class="gallery-caption-text">NBCCI Opening Remarks at the UK–Nepal Business Forum 2025</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
+              <div class="gallery-frame"><img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.21.40 PM (1).jpeg' %}" alt="Opening remarks at the podium" loading="lazy"></div>
+              <figcaption><span class="gallery-caption-text">NBCCI Remarks at the UK–Nepal Business Forum 2025</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             <figure class="gallery-item gallery-extra reveal">
-              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.41 PM.jpeg" alt="Sector dialogue panel" loading="lazy"></div>
+              <div class="gallery-frame"><img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.21.41 PM.jpeg' %}" alt="Sector dialogue panel" loading="lazy"></div>
               <figcaption><span class="gallery-caption-text">Industry Leaders Discuss Key Sectors at the Business Forum</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             <figure class="gallery-item gallery-extra reveal">
-              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.21.42 PM.jpeg" alt="Expert panel discussion" loading="lazy"></div>
+              <div class="gallery-frame"><img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.21.42 PM.jpeg' %}" alt="Expert panel discussion" loading="lazy"></div>
               <figcaption><span class="gallery-caption-text">Experts Share Insights on UK–Nepal Business Opportunitiesl</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             <figure class="gallery-item gallery-extra reveal">
-              <div class="gallery-frame"><img src="static/img/WhatsApp Image 2026-09-13 at 3.22.02 PM.jpeg" alt="Panel on Nepal market opportunities" loading="lazy"></div>
+              <div class="gallery-frame"><img src="{% static 'img/WhatsApp Image 2026-09-13 at 3.22.02 PM.jpeg' %}" alt="Panel on Nepal market opportunities" loading="lazy"></div>
               <figcaption><span class="gallery-caption-text">Exploring Market Opportunities for UK Businesses in Nepal</span><span class="gallery-caption-arrow" aria-hidden="true">&#8599;</span></figcaption>
             </figure>
             
@@ -366,11 +370,11 @@
         <div class="reveal partnership-content">
           <span class="section-kicker-title">Our convening partners</span>
           <div class="partner-grid"><div class="partner-card reveal delay-1">
-            <div class="partner-logo"><img src="static/img/british_logo.png" alt="British Embassy Kathmandu logo" loading="lazy">
+            <div class="partner-logo"><img src="{% static 'img/british_logo.png' %}" alt="British Embassy Kathmandu logo" loading="lazy">
             </div><strong>British Embassy Kathmandu</strong><p>Supporting a modern, productive and ambitious bilateral relationship.</p></div>
             <div class="partner-card reveal delay-2">
               <div class="partner-logo">
-                <img src="static/img/nbcci_logo.png" alt="Nepal Britain Chamber of Commerce &amp; Industry logo" loading="lazy"></div><strong>NBCCI</strong><p>Connecting businesses and strengthening UK–Nepal commercial ties.</p></div></div><a class="button button-secondary" href="#contact">Talk to the forum team <span>↗</span></a></div>
+                <img src="{% static 'img/nbcci_logo.png' %}" alt="Nepal Britain Chamber of Commerce &amp; Industry logo" loading="lazy"></div><strong>NBCCI</strong><p>Connecting businesses and strengthening UK–Nepal commercial ties.</p></div></div><a class="button button-secondary" href="#contact">Talk to the forum team <span>↗</span></a></div>
       </div>
       </section>
 
@@ -390,7 +394,7 @@
           <p>The Forum will be hosted at the Kathmandu Marriott Hotel, Nepal &mdash; a central, easy-to-reach venue for delegates travelling from across Kathmandu and abroad.</p>
           <div class="venue-address">
             <i class="fas fa-location-dot" aria-hidden="true"></i>
-            <span><strong>Kathmandu Marriott Hotel</strong>Naya Bazar, Naxal, Kathmandu 44600, Nepal</span>
+            <span><strong>Kathmandu Marriott Hotel</strong> Naxal, Kathmandu 44600, Nepal</span>
           </div>
           <a class="button venue-button" href="https://www.google.com/maps/search/?api=1&query=Kathmandu+Marriott+Hotel" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a>
         </div>
@@ -404,7 +408,8 @@
       <div>
         <div class="section-kicker-title">Contact</div>
         <h2>If you have any questions, feel free to reach out to us.</h2>
-        <p>Send us a note if you have questions about the forum or partnership.</p>
+        <p>Send us a note if you have questions about the forum or partnership.<br/><br/>Delegate Reservations (For Room Booking): <a href="tel:+977 9801827632" class="tel-link">+977-9801827632</a><br/>Kathmandu Marriott Hotel: <a href="tel:+977 9801827632" class="tel-link">+977-9801827632</a><br/>Moxy Hotel Kathmandu: <a href="tel:+977 9707093309" class="tel-link">+977-9707093309</a>
+        </p>
 
         <div class="contact-details">
           <div class="location-info">
@@ -425,7 +430,6 @@
       </div>
 
       <form class="site-form contact-form" data-api-form="contact" method="post">
-        {% csrf_token %}
 
         <div class="form-grid">
           <label>Name *<input name="name" required placeholder="Your name"></label>
@@ -437,10 +441,10 @@
         </label>
 
         <label>Message *
-          <textarea name="message" required minlength="10" placeholder="Write your message here."></textarea>
+          <textarea name="message" required minlength="5" placeholder="Write your message here."></textarea>
         </label>
 
-        <label class="honeypot">Website
+        <label class="honeypot">
           <input name="website" tabindex="-1" autocomplete="off">
         </label>
 
@@ -454,34 +458,55 @@
 
 
     </section>
+    </main>
     <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>
-        <div class="footer-logo">
-          <img src="static/img/british_logo_transparent.png" alt="Nepal Britain Chamber of Commerce & Industry">
-          <span class="footer-logo-divider" aria-hidden="true">|</span>
-          <img src="static/img/nbcci_logo_transparent.png" alt="British Embassy Kathmandu">
-        </div>
-        <p>UK–Nepal Business Forum 2026. A platform for the people building shared prosperity.</p>
-        <div class="footer-contact">
-          <a href="mailto:info@nbcci.org"><i class="fas fa-envelope"></i>info@nbcci.org</a>
-          <div class="social-links">
-            <a href="https://www.facebook.com/people/Nepal-Britain-Chamber-of-Commerce-and-Industry/100076827198751/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.linkedin.com/company/nepal-britain-chamber-of-commerce-and-industry" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/nbcci/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <div class="container">
+        <div class="footer-inner">
+          <div>
+            <div class="footer-logo">
+              <img src="{% static 'img/british_logo.png' %}" alt="British Embassy Kathmandu">
+              <span class="footer-logo-divider" aria-hidden="true">|</span>
+              <img src="{% static 'img/nbcci_logo.png' %}" alt="Nepal Britain Chamber of Commerce and Industry">
+            </div>
+            <p>UK–Nepal Business Forum 2026. A platform for the people building shared prosperity.</p>
+            <div class="footer-contact">
+              <a href="mailto:info@nbcci.org"><i class="fas fa-envelope" aria-hidden="true"></i>info@nbcci.org</a>
+            </div>
+            <div class="social-links">
+              <a href="https://www.facebook.com/people/Nepal-Britain-Chamber-of-Commerce-and-Industry/100076827198751/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+              <a href="https://www.linkedin.com/company/nepal-britain-chamber-of-commerce-and-industry" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+              <a href="https://www.instagram.com/nbcci/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            </div>
+          </div>
+          <div class="footer-right">
+            <nav class="footer-nav" aria-label="Footer navigation">
+              <a href="#home">Home</a>
+              <a href="#about">About</a>
+              <a href="#pillars">Pillars</a>
+              <a href="#delegates">Delegates</a>
+              <a href="#programme">Programme</a>
+              <a href="#gallery">Gallery</a>
+              <a href="#outcomes">Outcomes</a>
+              <a href="#contact">Contact</a>
+            </nav>
+            <a href="#home">Back to top &#8599;</a>
+            <p class="section-kicker">NBCCI &times; British Embassy Kathmandu</p>
           </div>
         </div>
+        <div class="copyright">&copy; 2026 Nepal-Britain Chamber of Commerce and Industry &middot; Kathmandu, Nepal</div>
       </div>
-      <div class="footer-right">
-        <div class="footer-nav"><a href="#home">Home</a><a href="#about">About</a><a href="#pillars">Pillars</a><a href="#delegates">Delegates</a><a href="#programme">Programme</a><a href="#gallery">Gallery</a><a href="#outcomes">Outcomes</a><a href="#contact">Contact</a></div>
-        <a href="#home">Back to top ↗</a>
-        <span class="section-kicker">NBCCI × British Embassy Kathmandu</span>
-      </div>
+    </footer>
     </div>
-    <div class="container copyright">© 2026 Nepal–Britain Chamber of Commerce and Industry · Kathmandu, Nepal</div>
-  </footer>
+
+    <div class="lb" id="lightbox" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Image gallery">
+      <button class="lb-btn lb-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <button class="lb-btn lb-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="lb-btn lb-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="lb-stage"><img class="lb-img" alt=""></div>
+      <div class="lb-cap"><span class="lb-text"></span><span class="lb-count"></span></div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
-    <script src="static/scripts.js" defer></script>
+    <script src="{% static 'scripts.js' %}" defer></script>
   </body>
   </html>

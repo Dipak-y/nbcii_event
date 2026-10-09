@@ -149,66 +149,39 @@ if(galleryBtn){
   };
 }
 
-/* Forms */
-document.querySelectorAll('[data-api-form]').forEach(form=>{
+/* Contact form -> EmailJS */
+const form=document.querySelector('.contact-form');
+if(form){
+  const status=form.querySelector('.form-status');
+  const button=form.querySelector('button[type="submit"]');
 
-  form.onsubmit=async e=>{
+  form.addEventListener('submit',async e=>{
     e.preventDefault();
+    if(form.website.value) return; /* bot */
 
-    const type=form.dataset.apiForm;
-    const required=[...form.querySelectorAll('[required]')];
-    const interests=form.querySelectorAll('input[name="interests"]:checked');
-    const status=form.querySelector('.form-status');
-    const button=form.querySelector('button[type="submit"]');
-
-    if(!required.every(x=>x.checkValidity()) ||
-       (type==='registration'&&!interests.length)){
-      status.className='form-status is-visible error';
-      status.textContent='Please complete all required fields.';
-      return;
-    }
-
-    const old=button.innerHTML;
+    const label=button.innerHTML;
     button.disabled=true;
     button.innerHTML='Sending…';
 
     try{
-      const response=await fetch(
-        type==='registration'
-          ?'/api/forum/registrations/'
-          :'/api/forum/contact/',
-        {
-          method:'POST',
-          headers:{
-            'X-CSRFToken':
-              form.querySelector('[name=csrfmiddlewaretoken]')?.value||''
-          },
-          body:new FormData(form),
-          credentials:'same-origin'
-        }
+      await emailjs.sendForm(
+        'service_cfez7m6',
+        'template_avt9akk',
+        form,
+        {publicKey:'eV2MlxTKkUNwjdc3l'}
       );
-
-      const data=await response.json();
-
-      if(!response.ok)
-        throw new Error(data.error||'Unable to submit.');
-
       status.className='form-status is-visible success';
-      status.textContent=
-        `${data.message}. Reference: ${data.reference||''}`;
-
+      status.textContent='Thank you! Your message has been sent.';
       form.reset();
-
-    }catch(error){
+    }catch(err){
       status.className='form-status is-visible error';
-      status.textContent=error.message;
+      status.textContent='Could not send. Please try again.';
     }finally{
       button.disabled=false;
-      button.innerHTML=old;
+      button.innerHTML=label;
     }
-  };
-
-});
+  });
+}
 
 }
 
@@ -266,4 +239,72 @@ init();
       }
     });
   });
+})();
+
+
+/* ---- Gallery lightbox ---- */
+(function () {
+  var box = document.getElementById('lightbox');
+  if (!box) return;
+  var img = box.querySelector('.lb-img');
+  var text = box.querySelector('.lb-text');
+  var count = box.querySelector('.lb-count');
+  var idx = 0, startX = 0;
+
+  function items() {
+    /* all gallery images, including the ones hidden behind "View more" */
+    return Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+  }
+  function show(i) {
+    var list = items();
+    if (!list.length) return;
+    idx = (i + list.length) % list.length;
+    var src = list[idx].querySelector('img');
+    var cap = list[idx].querySelector('.gallery-caption-text');
+    img.classList.add('is-loading');
+    img.onload = function () { img.classList.remove('is-loading'); };
+    img.src = src.currentSrc || src.src;
+    img.alt = src.alt;
+    text.textContent = cap ? cap.textContent : '';
+    count.textContent = (idx + 1) + ' / ' + list.length;
+    /* preload neighbours */
+    [idx - 1, idx + 1].forEach(function (n) {
+      var el = list[(n + list.length) % list.length].querySelector('img');
+      if (el) new Image().src = el.src;
+    });
+  }
+  function open(i) {
+    show(i);
+    box.classList.add('is-open');
+    requestAnimationFrame(function () { box.classList.add('is-show'); });
+    document.documentElement.style.overflow = 'hidden';
+    box.querySelector('.lb-close').focus();
+  }
+  function close() {
+    box.classList.remove('is-show');
+    setTimeout(function () { box.classList.remove('is-open'); img.removeAttribute('src'); }, 250);
+    document.documentElement.style.overflow = '';
+  }
+
+  document.addEventListener('click', function (e) {
+    var fig = e.target.closest('.gallery-item');
+    if (fig) { open(items().indexOf(fig)); }
+  });
+  box.querySelector('.lb-close').addEventListener('click', close);
+  box.querySelector('.lb-prev').addEventListener('click', function () { show(idx - 1); });
+  box.querySelector('.lb-next').addEventListener('click', function () { show(idx + 1); });
+  box.addEventListener('click', function (e) {
+    if (e.target === box || e.target.classList.contains('lb-stage')) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!box.classList.contains('is-open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(idx - 1);
+    else if (e.key === 'ArrowRight') show(idx + 1);
+  });
+  box.addEventListener('touchstart', function (e) { startX = e.changedTouches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+  }, { passive: true });
 })();
