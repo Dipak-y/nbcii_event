@@ -733,5 +733,4 @@ h1 { max-width: 880px; margin-bottom: 0; font-size: clamp(36px, 4.5vw, 72px); li
   .lb-prev { left: 18px; } .lb-next { right: 18px; }
   .lb-cap { font-size: 13px; margin-bottom: 52px; }
 }
-.tel-link { color: var(--red); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-.tel-link:hover { color: var(--red-dark); }
+.tel-link { color: var(--navy-fill); font-weight: 600; text-underline-offset: 3px; }
