@@ -382,7 +382,8 @@ h1 { max-width: 880px; margin-bottom: 0; font-size: clamp(36px, 4.5vw, 72px); li
 .location-info{display:flex;align-items:center;gap:10px}
 .location-info + .location-info{margin-top:2px}
 .location-info img{width:60px;height:60px;object-fit:contain}
-.location-info span{font-size:14.5px;line-height:1.5}
+.location-info span{font-size:14.5px;line-height:1.5;}
+   
 /* ---- Venue: map on the left, details on the right (stacks on mobile) ---- */
 .venue-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 64px; align-items: stretch; }
 .venue-map { position: relative; min-height: 440px; border-radius: 20px; overflow: hidden; background: var(--pale-teal); box-shadow: 0 24px 48px -28px rgba(11,42,102,.45); }
@@ -734,3 +735,21 @@ h1 { max-width: 880px; margin-bottom: 0; font-size: clamp(36px, 4.5vw, 72px); li
   .lb-cap { font-size: 13px; margin-bottom: 52px; }
 }
 .tel-link { color: var(--navy-fill); font-weight: 600; text-underline-offset: 3px; }
+
+.location-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.location-info span {
+    transform: translateY(6px) !important;
+}
+.partner-card > strong {
+    position: relative;
+    top: 5px;
+}
+
+.contact-details .location-info .british-embassy-text{
+    margin-top: 14px !important;
+}
