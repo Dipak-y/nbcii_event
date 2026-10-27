@@ -254,9 +254,9 @@ h1 { max-width: 880px; margin-bottom: 0; font-size: clamp(36px, 4.5vw, 72px); li
 .programme-row h3 { margin: 0; color: #000000; font-size: 19px; transition: color .35s ease; }
 
 /* after */
-.programme-row p { margin: 0; max-height: 0; opacity: 0; overflow: hidden; color: #000; font-size: 15px; transition: max-height .45s ease, opacity .35s ease, margin .35s ease, color .35s ease; }
+.programme-row p { margin: 0; max-height: 0; opacity: 0; overflow: hidden; color: #000000; font-size: 15px; line-height: 1.6; font-weight: 400; transition: max-height .45s ease, opacity .35s ease, margin .35s ease, color .35s ease; }
 .programme-row p:empty { display: none; }
-.programme-row.is-touched p { max-height: 400px; opacity: 1; margin-top: 6px; }   /* mobile tap */
+.programme-row.is-touched p { max-height: 400px; opacity: 1; margin-top: 6px; }
 .programme-type { color: var(--ink); font-size: 16px; font-weight: 500; letter-spacing: 0; text-align: right; text-transform: none; transition: color .35s ease; }
 .programme-note { margin: 28px 0 0; color: var(--muted); font-size: 14px; }
 
