@@ -10,7 +10,7 @@ if(isTouch){
   touchGroups.forEach(sel=>{
     const items = document.querySelectorAll(sel);
     items.forEach(item=>{
-      item.addEventListener('touchstart', ()=>{
+      item.addEventListener(sel === '.programme-row' ? 'click' : 'touchstart', () => {
         items.forEach(i=>{ if(i!==item) i.classList.remove('is-touched'); });
         item.classList.toggle('is-touched');
       }, {passive:true});

@@ -253,7 +253,10 @@ h1 { max-width: 880px; margin-bottom: 0; font-size: clamp(36px, 4.5vw, 72px); li
 .programme-row time { color: var(--navy); font: 600 17px var(--sans); letter-spacing: 0; transition: color .35s ease; }
 .programme-row h3 { margin: 0; color: #000000; font-size: 19px; transition: color .35s ease; }
 
-.programme-row p { margin: 6px 0 0; color: #000000; font-size: 15px; line-height: 1.6; font-weight: 400; transition: color .35s ease; }
+/* after */
+.programme-row p { margin: 0; max-height: 0; opacity: 0; overflow: hidden; color: #000; font-size: 15px; transition: max-height .45s ease, opacity .35s ease, margin .35s ease, color .35s ease; }
+.programme-row p:empty { display: none; }
+.programme-row.is-touched p { max-height: 400px; opacity: 1; margin-top: 6px; }   /* mobile tap */
 .programme-type { color: var(--ink); font-size: 16px; font-weight: 500; letter-spacing: 0; text-align: right; text-transform: none; transition: color .35s ease; }
 .programme-note { margin: 28px 0 0; color: var(--muted); font-size: 14px; }
 
@@ -271,6 +274,7 @@ h1 { max-width: 880px; margin-bottom: 0; font-size: clamp(36px, 4.5vw, 72px); li
   .programme-row:hover::after { transform: scaleY(1); }
   .programme-row:hover time, .programme-row:hover h3 { color: var(--white); }
   .programme-row:hover p, .programme-row:hover .programme-type { color: rgba(255,255,255,.86); }
+  .programme-row:hover p { max-height: 400px; opacity: 1; margin-top: 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .programme-row::before, .programme-row::after { transition: none; }
