@@ -1,3 +1,7 @@
+/* Shared reference to the Lenis smooth-scroll instance.
+   Declared at top level so the speaker-profile popup can pause/resume it. */
+let lenis;
+
 function init(){
 
 const isTouch = matchMedia('(hover: none)').matches;
@@ -6,7 +10,7 @@ const isTouch = matchMedia('(hover: none)').matches;
    Tapping a card applies the same visual state that :hover gives on desktop;
    tapping elsewhere (or another card) clears it. */
 if(isTouch){
-  const touchGroups = ['.pillar-panel', '.programme-row', '.delegate-item', '.outcome-card'];
+  const touchGroups = ['.pillar-panel', '.dg-item', '.outcome-card'];
   touchGroups.forEach(sel=>{
     const items = document.querySelectorAll(sel);
     items.forEach(item=>{
@@ -47,7 +51,6 @@ if(isTouch){
   window.addEventListener('orientationchange', apply);
 })();
 
-let lenis;
 if(!isTouch && typeof Lenis!=='undefined'&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
   lenis=new Lenis({duration:1.1,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
   const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};
@@ -185,7 +188,7 @@ if(form){
 
 }
 
-// defer guarantees DOM is ready — call immediately
+// Script is loaded at the end of <body>, so the DOM is ready — call immediately
 init();
 
 /* ---- Delegates: interactive index (hover / focus / click a group -> spotlight panel; accordion on phones) ---- */
@@ -307,4 +310,45 @@ init();
     var dx = e.changedTouches[0].clientX - startX;
     if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
   }, { passive: true });
+})();
+
+
+/* ---- Speaker profile popup ---- */
+(function () {
+  var dlg = document.getElementById('profileDialog');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  var img = dlg.querySelector('.profile-photo');
+  var opener = null;
+  /* Pause Lenis smooth-scroll while the popup is open. Guarded so the popup still
+     works if Lenis is missing, blocked, or a different version without stop()/start(). */
+  function scrollLock(method) {
+    try {
+      if (typeof lenis !== 'undefined' && lenis && typeof lenis[method] === 'function') lenis[method]();
+    } catch (err) { /* ignore: html.profile-open already locks page scroll */ }
+  }
+  document.querySelectorAll('.speaker-card.has-bio .speaker-photo-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('.speaker-card');
+      var photo = card.querySelector('.speaker-photo');
+      img.src = photo.currentSrc || photo.src;
+      img.alt = photo.alt;
+      img.style.objectPosition = photo.style.objectPosition || '';
+      dlg.classList.toggle('profile-dialog--nophoto', card.hasAttribute('data-nophoto'));
+      dlg.querySelector('#profileName').textContent = card.querySelector('.speaker-name').textContent;
+      dlg.querySelector('.profile-role').textContent = card.querySelector('.speaker-role').textContent;
+      dlg.querySelector('.profile-bio').innerHTML = card.querySelector('.speaker-bio').innerHTML;
+      opener = btn;
+      dlg.showModal();
+      dlg.querySelector('.profile-text').scrollTop = 0;
+      document.documentElement.classList.add('profile-open');
+      scrollLock('stop');
+    });
+  });
+  dlg.querySelector('.profile-close').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', function () {
+    document.documentElement.classList.remove('profile-open');
+    scrollLock('start');
+    if (opener) opener.focus();
+  });
 })();
