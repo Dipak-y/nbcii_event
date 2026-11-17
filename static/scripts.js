@@ -353,3 +353,47 @@ init();
     if (opener) opener.focus();
   });
 })();
+
+
+/* ---- Speaker cards: line up name / position / company across cards in the same row ---- */
+(function () {
+  var parts = ['.speaker-name', '.speaker-role'];
+
+  function align() {
+    document.querySelectorAll('.speaker-list').forEach(function (list) {
+      var cards = Array.prototype.slice.call(list.querySelectorAll('.speaker-card'));
+      /* reset first so heights are re-measured from natural size */
+      cards.forEach(function (c) {
+        parts.forEach(function (sel) {
+          var el = c.querySelector(sel);
+          if (el) el.style.minHeight = '';
+        });
+      });
+      /* group cards into visual rows by their top edge */
+      var rows = [];
+      cards.forEach(function (c) {
+        var top = c.offsetTop;
+        var row = rows.filter(function (r) { return Math.abs(r.top - top) < 4; })[0];
+        if (!row) { row = { top: top, cards: [] }; rows.push(row); }
+        row.cards.push(c);
+      });
+      rows.forEach(function (row) {
+        if (row.cards.length < 2) return;
+        parts.forEach(function (sel) {
+          var els = row.cards.map(function (c) { return c.querySelector(sel); }).filter(Boolean);
+          var max = Math.max.apply(null, els.map(function (el) { return el.getBoundingClientRect().height; }));
+          els.forEach(function (el) { el.style.minHeight = max + 'px'; });
+        });
+      });
+    });
+  }
+
+  var t;
+  function schedule() { clearTimeout(t); t = setTimeout(align, 80); }
+
+  align();
+  window.addEventListener('load', align);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('orientationchange', schedule);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(align);
+})();
