@@ -394,7 +394,8 @@ html.profile-open { overflow: hidden; }
 .sponsor-card--tall img { max-height: 100px; }
 .sponsor-card-label { color: #111; font-size: 15px; text-align: center; font-weight: 700; line-height: 1; letter-spacing: .04em; text-transform: uppercase; }
 .sponsor-card-label + img { max-height: 80px; }
-.sponsor-card--research .sponsor-card-label + img { max-height: 104px; }
+.sponsor-card--research img { max-height: 110px; }
+.sponsor-research-title { margin: 48px 0 12px; color: var(--ink); text-align: center; font-family: 'Bricolage Grotesque', Arial, sans-serif; font-weight: 700; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.1; letter-spacing: .02em; text-transform: uppercase; }
 /* category grid (brochure-style, 3 columns) */
 .sponsor-categories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 52px 32px; max-width: 1120px; margin: 0 auto; }
 .sponsor-categories .sponsor-group-title { margin-bottom: 18px; font-size: clamp(13px, 1.1vw, 16px); letter-spacing: .04em; }
@@ -424,7 +425,8 @@ html.profile-open { overflow: hidden; }
   .sponsor-card--tall img { max-height: 76px; }
   .sponsor-card-label { font-size: 11px; }
   .sponsor-card-label + img { max-height: 40px; }
-  .sponsor-card--research .sponsor-card-label + img { max-height: 50px; }
+  .sponsor-card--research img { max-height: 64px; }
+  .sponsor-research-title { margin-top: 32px; font-size: 16px; }
 }
 .outcomes-section { background: var(--paper); }
 .outcome-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 54px; }
