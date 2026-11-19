@@ -377,25 +377,25 @@ html.profile-open { overflow: hidden; }
 .gallery-extra.is-visible { display: block; }
 .gallery-more { display: flex; justify-content: center; margin-top: 44px; }
 /* ---- Sponsors & Partners ---- */
-.sponsors-section { --sponsor-bg: var(--paper); background: var(--sponsor-bg); }
+.sponsors-section { --sponsor-bg: var(--navy-fill); background: var(--sponsor-bg); }
 .sponsors-section .section-heading { max-width: none; text-align: center; }
 .sponsors-section .section-kicker-title,
-.sponsors-section .section-heading h2 { color: var(--ink); }
+.sponsors-section .section-heading h2 { color: #fff; }
 .sponsors-section .section-heading h2 { margin-left: auto; margin-right: auto; }
 .sponsor-groups { display: block; margin-top: 48px; }
 .sponsor-group { text-align: center; }
 .sponsor-group-title::after { content: ''; display: block; width: 40px; height: 3px; margin: 12px auto 0; border-radius: 2px; background: var(--red); }
 .sponsor-group-title { margin: 0 0 26px; color: #fff; font-family: inherit; font-weight: 800; font-size: clamp(17px, 1.6vw, 22px); line-height: 1.1; letter-spacing: .03em; text-transform: uppercase; }
-.sponsor-partners-title { margin: 0 0 28px; color: var(--ink); text-align: center; font-family: 'Bricolage Grotesque', Arial, sans-serif; font-weight: 700; font-size: clamp(22px, 2.4vw, 32px); line-height: 1.1; letter-spacing: .02em; text-transform: uppercase; }
+.sponsor-partners-title { margin: 0 0 28px; color: #fff; text-align: center; font-family: 'Bricolage Grotesque', Arial, sans-serif; font-weight: 700; font-size: clamp(22px, 2.4vw, 32px); line-height: 1.1; letter-spacing: .02em; text-transform: uppercase; }
 .sponsor-partners-title::after { content: ''; display: block; width: 220px; max-width: 60%; height: 2px; margin: 14px auto 0; background: var(--red); }
 .sponsor-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 100%; margin: 0 auto; padding: 0; list-style: none; }
-.sponsor-card { flex: 0 0 calc((100% - 3 * 20px) / 4); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 172px; padding: 18px 24px; border-radius: 0; background: transparent; }
+.sponsor-card { flex: 0 0 calc((100% - 3 * 20px) / 4); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; height: 172px; padding: 18px 24px; border-radius: 16px; background: #fff; }
 .sponsor-card img { display: block; width: auto; height: auto; max-width: 100%; max-height: 80px; object-fit: contain; }
 .sponsor-card--tall img { max-height: 100px; }
 .sponsor-card-label { color: #111; font-size: 15px; text-align: center; font-weight: 700; line-height: 1; letter-spacing: .04em; text-transform: uppercase; }
 .sponsor-card-label + img { max-height: 80px; }
 .sponsor-card--research img { max-height: 110px; }
-.sponsor-research-title { margin: 48px 0 12px; color: var(--ink); text-align: center; font-family: 'Bricolage Grotesque', Arial, sans-serif; font-weight: 700; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.1; letter-spacing: .02em; text-transform: uppercase; }
+.sponsor-research-title { margin: 48px 0 12px; color: #fff; text-align: center; font-family: 'Bricolage Grotesque', Arial, sans-serif; font-weight: 700; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.1; letter-spacing: .02em; text-transform: uppercase; }
 /* category grid (brochure-style, 3 columns) */
 .sponsor-categories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 52px 32px; max-width: 1120px; margin: 0 auto; }
 .sponsor-categories .sponsor-group-title { margin-bottom: 18px; font-size: clamp(13px, 1.1vw, 16px); letter-spacing: .04em; }
@@ -403,7 +403,7 @@ html.profile-open { overflow: hidden; }
 /* .reveal also sets `transition`; restate it so the fade-in and the hover lift both animate */
 .sponsor-card.reveal { transition: opacity .55s ease, transform .25s ease, box-shadow .25s ease; }
 @media (hover: hover) {
-  .sponsor-card.reveal:hover { transform: translateY(-5px); }
+  .sponsor-card.reveal:hover { transform: translateY(-5px); box-shadow: 0 18px 36px -18px rgba(16,44,70,.4); }
 }
 @media (max-width: 1000px) {
   .sponsor-categories { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 28px; }
