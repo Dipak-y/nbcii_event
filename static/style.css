@@ -62,7 +62,7 @@ html, body { overflow-x: clip; }
 .menu-toggle.is-open span:last-child { transform: translateY(-6px) rotate(-45deg); }
 .mobile-nav { display: none; }
 .institutional-grid { background-image: linear-gradient(to right, rgba(16,44,70,.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(16,44,70,.045) 1px, transparent 1px); background-size: 64px 64px; }
-.hero { position: relative; min-height: 540px; overflow: hidden; width: calc(100% - 80px); margin: 20px auto 0; border-radius: 32px; background-color: var(--navy); background-position: center; background-size: cover; background-repeat: no-repeat; /* background-image is set inline on #home in index.html so the path always resolves from the page, wherever this CSS file lives */ box-shadow: 0 30px 60px -40px rgba(4,11,30,.5); }
+.hero { position: relative; min-height: 540px; overflow: hidden; width: calc(100% - 80px); margin: 20px auto 0; border-radius: 32px; background-color: var(--navy); background-position: center; background-size: cover; background-repeat: no-repeat; /* background-image is set inline on #home so the path always resolves from the page */ box-shadow: 0 30px 60px -40px rgba(4,11,30,.5); }
 .hero-inner { position: relative; z-index: 1; min-height: 540px; display: flex; align-items: center; justify-content: center; padding: 30px 0 50px; }
 /* Fixed "design" width — always laid out exactly like desktop.
    On narrow screens JS scales this box down as a whole,
@@ -263,6 +263,7 @@ h1 { max-width: 880px; margin-bottom: 0; font-size: clamp(36px, 4.5vw, 72px); li
 .session-group-label::before, .session-group-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.4); }
 .speaker-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
 .speaker-card { display: flex; flex-direction: column; flex: 0 0 calc((100% - 60px) / 4); max-width: calc((100% - 60px) / 4); overflow: hidden; border-radius: 10px; background: #fff; box-shadow: 0 10px 24px -14px rgba(4,11,30,.55); }
+.speaker-list--3 .speaker-card { flex-basis: calc((100% - 40px) / 3); max-width: calc((100% - 40px) / 3); }
 .speaker-photo { display: block; width: 100%; aspect-ratio: 4 / 3.4; object-fit: cover; object-position: center 12%; background: var(--line); }
 .speaker-info { display: flex; flex: 1; flex-direction: column; align-items: center; gap: 6px; padding: 14px 14px 18px; text-align: center; }
 .speaker-name { margin: 0; color: var(--name-ink); font: 700 18.5px var(--sans); line-height: 1.25; letter-spacing: -.01em; }
@@ -332,12 +333,13 @@ html.profile-open { overflow: hidden; }
   .session-bar { min-height: 64px; padding: 12px 10px; }
   .speaker-list { gap: 12px; }
   .speaker-card { flex-basis: calc((100% - 12px) / 2); max-width: calc((100% - 12px) / 2); }
+  .speaker-list--3 .speaker-card { flex-basis: calc((100% - 12px) / 2); max-width: calc((100% - 12px) / 2); }
   .speaker-info { padding: 10px 10px 14px; }
   .speaker-name { font-size: 16.5px; }
   .speaker-role { font-size: 14px; }
   .speaker-company { font-size: 13.5px; }
   .speaker-part { font-size: 12.5px; }
-      .session-desc { font-size: 14px; }
+  .session-desc { font-size: 14px; }
 }
 .panels-section { border-bottom: 1px solid var(--line); }
 .panel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 50px; }
@@ -376,6 +378,7 @@ html.profile-open { overflow: hidden; }
 .gallery-extra { display: none; }
 .gallery-extra.is-visible { display: block; }
 .gallery-more { display: flex; justify-content: center; margin-top: 44px; }
+
 /* ---- Sponsors & Partners ---- */
 .sponsors-section { --sponsor-bg: var(--navy-fill); background: var(--sponsor-bg); }
 .sponsors-section .section-heading { max-width: none; text-align: center; }
@@ -866,4 +869,12 @@ html.profile-open { overflow: hidden; }
 .partner-card > strong {
     position: relative;
     top: 5px;
+}
+    /* ---- Sponsors: inset rounded panel, same look as the opening (hero) and closing (footer) sections ---- */
+.sponsors-section { width: calc(100% - 80px); margin: 34px auto; padding: 64px 0; border-radius: 32px; box-shadow: 0 30px 60px -40px rgba(4,11,30,.5); }
+.sponsors-section .container { width: min(1440px, calc(100% - 96px)); }
+@media (max-width: 820px) {
+  /* hero goes edge-to-edge on phones, so the sponsors panel does too */
+  .sponsors-section { width: 100%; margin: 0; padding: 40px 0; border-radius: 0; box-shadow: none; }
+  .sponsors-section .container { width: calc(100% - 40px); }
 }

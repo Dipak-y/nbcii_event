@@ -353,6 +353,7 @@ init();
     if (opener) opener.focus();
   });
 })();
+    
 
 
 /* ---- Speaker cards: line up name / position / company across cards in the same row ---- */
