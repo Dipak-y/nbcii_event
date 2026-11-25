@@ -398,16 +398,14 @@ init();
   window.addEventListener('orientationchange', schedule);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(align);
 })();
-/* Booklet PDF: popup (iframe) on desktop, new tab on touch phones/tablets */
+/*  Booklet PDF popup: iframe is created only when opened (the PDF is large) */
 (function () {
   var dlg = document.getElementById('bookletDialog');
   var openBtn = document.getElementById('bookletOpen');
   if (!dlg || !openBtn) return;
   var body = dlg.querySelector('.booklet-body');
   var SRC = 'static/Booklet.pdf';
-  var isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)');
-
-  function openPopup() {
+  function open() {
     if (!body.querySelector('iframe')) {
       var f = document.createElement('iframe');
       f.title = 'Event Booklet (PDF)';
@@ -421,15 +419,7 @@ init();
     document.documentElement.classList.add('profile-open');
     dlg.showModal();
   }
-
-  openBtn.addEventListener('click', function () {
-    if (isTouchDevice.matches) {
-      window.open(SRC, '_blank', 'noopener');
-    } else {
-      openPopup();
-    }
-  });
-
+  openBtn.addEventListener('click', open);
   dlg.querySelector('.booklet-close').addEventListener('click', function () { dlg.close(); });
   dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
   dlg.addEventListener('close', function () {
