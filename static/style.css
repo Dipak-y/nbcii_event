@@ -878,3 +878,38 @@ html.profile-open { overflow: hidden; }
   .sponsors-section { width: 100%; margin: 0; padding: 40px 0; border-radius: 0; box-shadow: none; }
   .sponsors-section .container { width: calc(100% - 40px); }
 }
+/* Booklet PDF viewer (iframe popup) */
+.booklet-cta { --time-w: 190px; margin: 28px 24px 0; display: grid; grid-template-columns: var(--time-w) 1fr; }
+.booklet-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 10px; border: 0; border-radius: 8px; background: var(--red); color: #fff; font: 700 15px var(--sans); white-space: nowrap; cursor: pointer; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; }
+.booklet-btn .bk-short { display: none; }
+.booklet-btn:hover { background: #a92c37; transform: translateY(-2px); box-shadow: 0 12px 20px -12px var(--red); }
+.booklet-btn:focus-visible { outline: 3px solid var(--navy-fill); outline-offset: 3px; }
+.booklet-dialog { width: min(1000px, calc(100% - 32px)); height: min(90vh, 900px); padding: 0; border: 0; border-radius: 18px; background: #fff; box-shadow: 0 30px 80px -20px rgba(4,11,30,.6); overflow: hidden; }
+.booklet-dialog::backdrop { background: rgba(8,22,56,.72); }
+.booklet-dialog[open] { display: flex; flex-direction: column; animation: profile-in .25s ease; }
+.booklet-head { flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 14px 12px 22px; background: var(--navy-fill); color: #fff; }
+.booklet-head h3 { margin: 0; font: 700 18px var(--sans); }
+.booklet-actions { display: flex; align-items: center; gap: 10px; }
+.booklet-ext { color: #fff; font: 600 13px var(--sans); text-decoration: underline; text-underline-offset: 3px; opacity: .85; }
+.booklet-ext:hover { opacity: 1; }
+.booklet-close { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 0; border-radius: 50%; background: #fff; color: var(--navy-fill); cursor: pointer; }
+.booklet-close:hover { background: var(--blue-soft); }
+.booklet-close:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+.booklet-body { position: relative; flex: 1 1 auto; min-height: 0; background: #e9edf3; }
+.booklet-body iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.booklet-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--navy-fill); font: 600 15px var(--sans); }
+@media (max-width: 820px) {
+  .booklet-cta { --time-w: 140px; margin: 28px 16px 0; }
+  .break-row { grid-template-columns: 140px 1fr; }
+  .booklet-btn { padding: 12px 8px; font-size: 14px; }
+  .booklet-btn .bk-long { display: none; }
+  .booklet-btn .bk-short { display: inline; }
+}
+@media (max-width: 700px) {
+  .booklet-dialog { width: 100%; max-width: 100%; height: 100vh; height: 100dvh; max-height: 100dvh; margin: 0; border-radius: 0; }
+  .booklet-head { padding: 10px 12px 10px 16px; }
+  .booklet-head h3 { font-size: 16px; }
+  .booklet-ext { font-size: 12px; }
+  .booklet-body { overflow: auto; -webkit-overflow-scrolling: touch; }
+}
+@media (prefers-reduced-motion: reduce) { .booklet-dialog[open] { animation: none; } }

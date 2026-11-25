@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Montserrat:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Montserrat:wght@400;500;600;700;800;900&display=swap"></noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'style.css' %}?v=20261121-2">
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=20261125-1">
 </head>
 
 <body>
@@ -217,6 +217,12 @@
             <div class="section-kicker-title">Program Schedule</div>
             <p>A considered sequence from high-level context to practical working sessions, then the conversations that turn good ideas into shared commitments.</p>
           </div>
+         <div class="booklet-cta reveal">
+  <button type="button" class="booklet-btn" id="bookletOpen" aria-haspopup="dialog" aria-controls="bookletDialog">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+    <span class="bk-long">View Event Booklet</span><span class="bk-short">Booklet</span>
+  </button>
+</div>
           <div class="programme-list">
 <div class="break-row reveal"><time>09:00 – 10:00</time><div><h3>Registration &amp; Networking</h3><p>Welcome delegates, facilitate registration and provide an opportunity for early networking among participants.</p></div></div>
 <div class="session reveal">
@@ -739,10 +745,21 @@
       </div>
     </dialog>
 
+    <dialog class="booklet-dialog" id="bookletDialog" aria-labelledby="bookletTitle" data-lenis-prevent>
+  <div class="booklet-head">
+    <h3 id="bookletTitle">Event Booklet</h3>
+    <div class="booklet-actions">
+      <a class="booklet-ext" href="static/Booklet.pdf" target="_blank" rel="noopener">Open in new tab</a>
+      <button type="button" class="booklet-close" aria-label="Close booklet"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></button>
+    </div>
+  </div>
+  <div class="booklet-body"><div class="booklet-loading">Loading booklet…</div></div>
+</dialog>
+
     <!-- Third-party libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
     <!-- Site scripts (loaded last so all markup above exists) -->
-    <script src="{% static 'scripts.js' %}"></script>
+    <script src="{% static 'scripts.js' %}?v=20261125-1"></script>
   </body>
 </html>
