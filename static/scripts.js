@@ -398,13 +398,14 @@ init();
   window.addEventListener('orientationchange', schedule);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(align);
 })();
-/* Booklet PDF: show the in-page popup (iframe) on all devices */
+/* Booklet PDF: popup (iframe) on desktop, new tab on touch phones/tablets */
 (function () {
   var dlg = document.getElementById('bookletDialog');
   var openBtn = document.getElementById('bookletOpen');
   if (!dlg || !openBtn) return;
   var body = dlg.querySelector('.booklet-body');
   var SRC = 'static/Booklet.pdf';
+  var isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)');
 
   function openPopup() {
     if (!body.querySelector('iframe')) {
@@ -421,7 +422,13 @@ init();
     dlg.showModal();
   }
 
-  openBtn.addEventListener('click', openPopup);
+  openBtn.addEventListener('click', function () {
+    if (isTouchDevice.matches) {
+      window.open(SRC, '_blank', 'noopener');
+    } else {
+      openPopup();
+    }
+  });
 
   dlg.querySelector('.booklet-close').addEventListener('click', function () { dlg.close(); });
   dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
